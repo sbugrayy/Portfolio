@@ -49,8 +49,7 @@ MAX_HISTORY_TURNS = 3
 ALLOWED_ORIGINS = [
     "http://localhost:5173",   # Vite dev server
     "http://localhost:4173",   # Vite preview
-    # Production Vercel URL'i buraya eklenecek:
-    # "https://bugrayildirim.vercel.app",
+    "https://bugrayildirim.vercel.app",
 ]
 
 # LLM sistem prompt şablonu
