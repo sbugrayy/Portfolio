@@ -3,7 +3,7 @@ import { AnimatePresence, motion, useMotionValue, useTransform } from 'framer-mo
 import EntryScreen      from './components/EntryScreen.jsx';
 import ChatInterface    from './components/ChatInterface.jsx';
 import SourceCards      from './components/SourceCards.jsx';
-import MobileFallback   from './components/MobileFallback.jsx';
+import MobileLayout     from './components/MobileLayout.jsx';
 import FloatingNav      from './components/FloatingNav.jsx';
 import TargetCursor     from './components/TargetCursor.jsx';
 import EvilEye          from './components/EvilEye.jsx';
@@ -51,7 +51,7 @@ export default function App() {
   const xUI = useTransform(mouseX, [-1, 1], [15, -15]);
   const yUI = useTransform(mouseY, [-1, 1], [15, -15]);
 
-  if (isMobile) return <MobileFallback />;
+  if (isMobile) return <MobileLayout />;
 
   return (
     <div className={styles.page}>
