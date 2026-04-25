@@ -7,34 +7,84 @@ sdk: docker
 pinned: false
 ---
 
-# BUĞRA.AI — Dijital Klon
+# BUĞRA.AI — Digital Clone Portfolio
 
-> "Bir portfolyo okumayacaksın — benimle konuşacaksın."
+> "You won't read a portfolio — you'll talk to me."
 
-RAG destekli, ses reaktif, fütüristik bir AI Avatar portfolyosu. Ziyaretçi ekrana girdiğinde bir portfolyo okumak yerine Buğra'nın dijital klonuyla konuşur.
+A futuristic, RAG-powered AI avatar portfolio. Instead of scrolling through a static page, visitors have a real conversation with my digital clone, backed by a knowledge base built from my actual experience.
 
----
-
-## Proje Yapısı
-
-```
-Portfolio/
-  frontend/    ← React + Vite + Three.js
-  backend/     ← FastAPI + LangChain + ChromaDB
-  .env         ← API anahtarları (git'e ekleme!)
-```
+**Live:** [bugrayildirim.vercel.app](https://bugrayildirim.vercel.app)
 
 ---
 
-## Kurulum
+## Features
 
-### 1. Ortam Değişkenleri
+| Feature | Description |
+|---|---|
+| **AI Avatar** | RAG pipeline answers questions as me, in first person |
+| **3D Sphere** | Three.js vertex displacement, reacts to audio FFT |
+| **Procedural Music** | Tone.js 4-stem ambient soundtrack, state-driven |
+| **Source Cards** | Real project cards surfaced from RAG metadata |
+| **Typing Effect** | 28ms/char character-by-character animation |
+| **Multilingual** | Responds in Turkish or English based on input |
+| **Mobile Fallback** | Graceful warning screen below 768px |
 
-`.env` dosyasını düzenle:
+---
 
+## Architecture
+
+```
+┌─────────────────────────────────────┐
+│  Frontend — Vercel                  │
+│  React + Vite + Three.js + Tone.js  │
+│  bugrayildirim.vercel.app           │
+└────────────────┬────────────────────┘
+                 │ POST /chat
+┌────────────────▼────────────────────┐
+│  Backend — Hugging Face Spaces      │
+│  FastAPI + LangChain + ChromaDB     │
+│  bugrayildirim-portfolio-api.hf.space│
+└─────────────────────────────────────┘
+```
+
+**RAG Pipeline:**
+`knowledge.json` → sentence-transformers embeddings → ChromaDB → MMR retrieval → Groq (llama-3.3-70b) → streamed answer
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Frontend | React 18, Vite, JavaScript, CSS Modules |
+| 3D / WebGL | Three.js, @react-three/fiber, @react-three/drei |
+| Animation | Framer Motion |
+| Audio | Tone.js (procedural 4-stem music) |
+| State | Zustand |
+| Backend | Python, FastAPI, Uvicorn |
+| AI / RAG | LangChain, ChromaDB, Groq API (llama-3.3-70b-versatile) |
+| Embeddings | sentence-transformers (paraphrase-multilingual-MiniLM-L12-v2) |
+| Deployment | Vercel (frontend), Hugging Face Spaces Docker (backend) |
+
+---
+
+## Local Development
+
+### Prerequisites
+- Node.js 18+
+- Python 3.11+
+- Groq API key → [console.groq.com](https://console.groq.com)
+
+### 1. Clone & configure
+
+```bash
+git clone https://github.com/sbugrayy/Portfolio.git
+cd Portfolio
+```
+
+Create `.env` in the root:
 ```env
-OPENAI_API_KEY=sk-...
-GITHUB_TOKEN=ghp_...  # Opsiyonel
+GROQ_API_KEY=your_key_here
 ```
 
 ### 2. Backend
@@ -42,14 +92,12 @@ GITHUB_TOKEN=ghp_...  # Opsiyonel
 ```bash
 cd backend
 python -m venv venv
-venv\Scripts\activate         # Windows
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # macOS/Linux
+
 pip install -r requirements.txt
-
-# Knowledge base oluştur (OPENAI_API_KEY gerekli)
-python scripts/build_knowledge_base.py
-
-# Backend'i başlat
-uvicorn main:app --reload --port 8000
+python build_knowledge_base.py   # builds ChromaDB from knowledge.json
+uvicorn main:app --reload        # http://localhost:8000
 ```
 
 ### 3. Frontend
@@ -57,70 +105,44 @@ uvicorn main:app --reload --port 8000
 ```bash
 cd frontend
 npm install
-npm run dev          # http://localhost:5173
+npm run dev   # http://localhost:5173
 ```
 
 ---
 
-## Özellikler
-
-| Özellik | Açıklama |
-|---|---|
-| **RAG Pipeline** | knowledge.json + GitHub README + CV PDF → ChromaDB |
-| **3D Küre** | Three.js vertex displacement (FFT reaktif) |
-| **Ses Sistemi** | Tone.js procedural 4-stem ambient müzik |
-| **Kaynak Kartlar** | RAG metadata'sından gerçek proje kartları |
-| **Typing Efekt** | 28ms/karakter karakter karakter yazı animasyonu |
-| **Stem Katmanları** | pad → perc → arp → bass (konuşma state'ine göre) |
-| **Mobil Fallback** | 768px altında uyarı ekranı |
-
----
-
-## API Endpoints
+## API
 
 ```
-GET  /health   → { "status": "ok" }
-POST /chat     → { "answer", "sources", "stem_hint" }
+GET  /health  →  { "status": "ok", "vectorstore": true }
+POST /chat    →  { "answer": string, "sources": [...], "stem_hint": string }
+```
+
+**Request body:**
+```json
+{
+  "query": "What projects have you built?",
+  "history": [
+    { "role": "user", "content": "..." },
+    { "role": "assistant", "content": "..." }
+  ]
+}
 ```
 
 ---
 
-## Deployment
+## Knowledge Base
 
-**Frontend → Vercel:**
-```bash
-cd frontend
-vercel --prod
-```
-
-**Backend → Railway:**
-1. Railway'de yeni proje oluştur → GitHub repo bağla
-2. `backend/` klasörünü root olarak belirt
-3. Environment variables: `OPENAI_API_KEY`, `GITHUB_TOKEN`
-4. Start command: `uvicorn main:app --host 0.0.0.0 --port $PORT`
-5. `frontend/src/config.js`'te `VITE_API_URL` ortam değişkenini güncelle
-
----
-
-## Knowledge Base Güncelleme
+Edit `backend/data/knowledge.json` and rebuild:
 
 ```bash
 cd backend
-python scripts/build_knowledge_base.py
+python build_knowledge_base.py
 ```
 
-Script otomatik olarak:
-- `data/knowledge.json` okur
-- GitHub README'lerini çeker (GITHUB_TOKEN varsa)
-- `data/cv.pdf` parse eder (varsa)
-- ChromaDB'yi yeniden oluşturur
+The script indexes: biography, skills, projects, experience, education, and certifications as separate ChromaDB documents for precise MMR retrieval.
 
 ---
 
-## Teknoloji Yığını
+## License
 
-**Frontend:** React 18 · Vite · Three.js · @react-three/fiber · @react-three/drei · Tone.js · Framer Motion · Zustand
-
-**Backend:** FastAPI · LangChain · ChromaDB · OpenAI API · PyMuPDF · PyGithub
-
-**Deployment:** Vercel (frontend) · Railway (backend)
+MIT
