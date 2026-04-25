@@ -1,3 +1,12 @@
+---
+title: Portfolio API
+emoji: 🤖
+colorFrom: blue
+colorTo: purple
+sdk: docker
+pinned: false
+---
+
 # BUĞRA.AI — Dijital Klon
 
 > "Bir portfolyo okumayacaksın — benimle konuşacaksın."
