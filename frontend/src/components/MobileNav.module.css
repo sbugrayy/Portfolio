@@ -23,7 +23,7 @@
   border-bottom-color: rgba(255, 255, 255, 0.05);
 }
 
-/* ── Hamburger ────────────────────────────────────────────────────── */
+/* ── Hamburger (üst bar, sadece açar) ────────────────────────────── */
 .hamburger {
   display: flex;
   flex-direction: column;
@@ -36,7 +36,6 @@
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 301;
 }
 
 .line {
@@ -44,30 +43,40 @@
   height: 1.5px;
   border-radius: 2px;
   background: var(--text, #e2e8f0);
-  transform-origin: center;
 }
 
-/* line uzunlukları: üst tam, orta kısa, alt tam */
 .line:nth-child(1) { width: 22px; }
 .line:nth-child(2) { width: 14px; }
 .line:nth-child(3) { width: 22px; }
 
-/* ── Monogram (sağ) ───────────────────────────────────────────────── */
-.monogram {
+/* ── Dil toggle — üst bar sağı ───────────────────────────────────── */
+.langRow {
+  display: flex;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 3px;
+}
+
+.langBtn {
   font-family: var(--mono);
-  font-size: 11px;
+  font-size: 9px;
   font-weight: 500;
-  letter-spacing: 0.2em;
-  color: var(--text, #e2e8f0);
+  letter-spacing: 0.12em;
+  color: rgba(148, 163, 184, 0.45);
   background: none;
   border: none;
   cursor: pointer;
-  opacity: 0.75;
-  padding: 4px 0;
-  transition: opacity 0.2s, color 0.2s;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: color 0.2s, background 0.2s;
 }
 
-.monogram:hover { opacity: 1; color: var(--cyan, #06b6d4); }
+.langActive {
+  color: var(--text, #e2e8f0);
+  background: rgba(124, 58, 237, 0.28);
+}
 
 /* ── Backdrop ─────────────────────────────────────────────────────── */
 .backdrop {
@@ -86,7 +95,7 @@
   left: 0;
   bottom: 0;
   z-index: 299;
-  width: min(80vw, 320px);
+  width: min(80vw, 300px);
   background: rgba(5, 5, 16, 0.97);
   border-right: 1px solid rgba(124, 58, 237, 0.18);
   display: flex;
@@ -97,25 +106,17 @@
     inset -1px 0 0 rgba(124, 58, 237, 0.08);
 }
 
-/* ── Drawer header ────────────────────────────────────────────────── */
-.drawerHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 24px;
-  height: 56px;          /* bar yüksekliğiyle hizalı */
-  flex-shrink: 0;
-}
-
+/* ── Brand — drawer üstü ─────────────────────────────────────────── */
 .drawerBrand {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 3px;
+  padding: 28px 24px 0;
 }
 
 .drawerTitle {
   font-family: var(--mono);
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 500;
   letter-spacing: 0.18em;
   color: var(--text, #e2e8f0);
@@ -125,48 +126,56 @@
 .drawerSub {
   font-family: var(--mono);
   font-size: 9px;
-  letter-spacing: 0.35em;
+  letter-spacing: 0.38em;
   text-transform: uppercase;
   color: var(--cyan, #06b6d4);
   opacity: 0.55;
 }
 
-/* ── Lang toggle ──────────────────────────────────────────────────── */
-.langRow {
+/* ── Kapat butonu — brand'ın altında ─────────────────────────────── */
+.closeBtn {
+  position: relative;
   display: flex;
-  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin: 14px 0 0 20px;
+  padding: 0;
   background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  border-radius: 6px;
-  padding: 3px;
-}
-
-.langBtn {
-  font-family: var(--mono);
-  font-size: 9px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  color: rgba(148, 163, 184, 0.45);
-  background: none;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
   cursor: pointer;
-  padding: 4px 9px;
-  border-radius: 4px;
-  transition: color 0.2s, background 0.2s;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
 }
 
-.langActive {
-  color: var(--text, #e2e8f0);
-  background: rgba(124, 58, 237, 0.25);
+.closeBtn:hover {
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.35);
 }
+
+.closeLine {
+  position: absolute;
+  width: 14px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: rgba(148, 163, 184, 0.65);
+  transition: background 0.2s;
+}
+
+.closeLine:nth-child(1) { transform: rotate(45deg); }
+.closeLine:nth-child(2) { transform: rotate(-45deg); }
+
+.closeBtn:hover .closeLine { background: var(--text, #e2e8f0); }
 
 /* ── Divider ──────────────────────────────────────────────────────── */
 .divider {
   height: 1px;
-  margin: 0 24px 8px;
+  margin: 16px 24px 8px;
   background: linear-gradient(
     to right,
-    rgba(124, 58, 237, 0.3),
+    rgba(124, 58, 237, 0.35),
     rgba(6, 182, 212, 0.15),
     transparent
   );
@@ -196,13 +205,9 @@
   transition: background 0.2s;
 }
 
-.navItem:hover {
-  background: rgba(124, 58, 237, 0.07);
-}
+.navItem:hover { background: rgba(124, 58, 237, 0.07); }
 
-.navItemActive {
-  background: rgba(124, 58, 237, 0.1);
-}
+.navItemActive { background: rgba(124, 58, 237, 0.10); }
 
 .navNum {
   font-family: var(--mono);
@@ -225,11 +230,10 @@
   transition: color 0.25s;
 }
 
-.navItemActive .navLabel { color: var(--text, #e2e8f0); }
+.navItemActive .navLabel   { color: var(--text, #e2e8f0); }
+.navItem:hover .navLabel   { color: rgba(226, 232, 240, 0.8); }
 
-.navItem:hover .navLabel { color: rgba(226, 232, 240, 0.8); }
-
-/* Aktif göstergesi — framer layoutId ile hareket eder */
+/* Aktif nokta — framer layoutId ile hareket eder */
 .navDot {
   position: absolute;
   right: 20px;
@@ -240,7 +244,7 @@
   box-shadow: 0 0 8px var(--cyan, #06b6d4), 0 0 16px rgba(6, 182, 212, 0.35);
 }
 
-/* ── Drawer footer ────────────────────────────────────────────────── */
+/* ── Footer ──────────────────────────────────────────────────────── */
 .drawerFooter {
   display: flex;
   align-items: center;
