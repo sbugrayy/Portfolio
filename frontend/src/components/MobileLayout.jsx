@@ -1,5 +1,4 @@
-import FloatingNav          from './FloatingNav.jsx';
-import LangToggle           from './LangToggle.jsx';
+import MobileNav            from './MobileNav.jsx';
 import ChatInterface        from './ChatInterface.jsx';
 import ErrorBoundary        from './ErrorBoundary.jsx';
 import AboutSection         from './AboutSection.jsx';
@@ -13,8 +12,7 @@ import styles from './MobileLayout.module.css';
 export default function MobileLayout() {
   return (
     <div className={styles.page}>
-      <FloatingNav />
-      <LangToggle />
+      <MobileNav />
 
       {/* Hero: AI chat, 3D/audio yok */}
       <section id="home" className={styles.hero}>
