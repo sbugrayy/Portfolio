@@ -63,15 +63,37 @@ export default function MobileNav() {
       {/* ── Top bar ─────────────────────────────────────────── */}
       <nav className={`${styles.bar} ${scrolled ? styles.scrolled : ''}`}>
 
-        {/* Hamburger — sol, sadece açar */}
+        {/* Hamburger ↔ ✕ — toggle */}
         <button
           className={styles.hamburger}
-          onClick={() => setOpen(true)}
-          aria-label="Menüyü aç"
+          onClick={() => setOpen(o => !o)}
+          aria-label={open ? 'Menüyü kapat' : 'Menüyü aç'}
+          aria-expanded={open}
         >
-          <span className={styles.line} />
-          <span className={styles.line} />
-          <span className={styles.line} />
+          {/* Üst çizgi */}
+          <motion.span
+            className={styles.line}
+            animate={open
+              ? { rotate: 45, y: 7, width: 22 }
+              : { rotate: 0,  y: 0, width: 22 }}
+            transition={{ duration: 0.26, ease: 'easeInOut' }}
+          />
+          {/* Orta çizgi */}
+          <motion.span
+            className={styles.line}
+            animate={open
+              ? { opacity: 0, scaleX: 0 }
+              : { opacity: 1, scaleX: 1 }}
+            transition={{ duration: 0.18, ease: 'easeInOut' }}
+          />
+          {/* Alt çizgi */}
+          <motion.span
+            className={styles.line}
+            animate={open
+              ? { rotate: -45, y: -7, width: 22 }
+              : { rotate:  0,  y:  0, width: 22 }}
+            transition={{ duration: 0.26, ease: 'easeInOut' }}
+          />
         </button>
 
         {/* Dil toggle — sağ */}
@@ -102,7 +124,7 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
             />
 
-            {/* Drawer */}
+            {/* Drawer — top: 0, üst barın altından başlar görsel olarak */}
             <motion.aside
               className={styles.drawer}
               initial={{ x: '-100%' }}
@@ -110,21 +132,11 @@ export default function MobileNav() {
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', stiffness: 340, damping: 34 }}
             >
-              {/* Brand */}
+              {/* Brand — üst bar yüksekliği kadar boşluk bırakır */}
               <div className={styles.drawerBrand}>
                 <span className={styles.drawerTitle}>BUĞRA.AI</span>
                 <span className={styles.drawerSub}>Dijital Klon</span>
               </div>
-
-              {/* Kapat butonu — başlığın hemen altında */}
-              <button
-                className={styles.closeBtn}
-                onClick={() => setOpen(false)}
-                aria-label="Menüyü kapat"
-              >
-                <span className={styles.closeLine} />
-                <span className={styles.closeLine} />
-              </button>
 
               {/* Divider */}
               <div className={styles.divider} />

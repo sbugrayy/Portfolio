@@ -106,12 +106,12 @@
     inset -1px 0 0 rgba(124, 58, 237, 0.08);
 }
 
-/* ── Brand — drawer üstü ─────────────────────────────────────────── */
+/* ── Brand — üst bar (56px) altından başlar ──────────────────────── */
 .drawerBrand {
   display: flex;
   flex-direction: column;
   gap: 3px;
-  padding: 28px 24px 0;
+  padding: 72px 24px 0;   /* 56px bar + 16px boşluk */
 }
 
 .drawerTitle {
@@ -131,43 +131,6 @@
   color: var(--cyan, #06b6d4);
   opacity: 0.55;
 }
-
-/* ── Kapat butonu — brand'ın altında ─────────────────────────────── */
-.closeBtn {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  margin: 14px 0 0 20px;
-  padding: 0;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background 0.2s, border-color 0.2s;
-  flex-shrink: 0;
-}
-
-.closeBtn:hover {
-  background: rgba(124, 58, 237, 0.15);
-  border-color: rgba(124, 58, 237, 0.35);
-}
-
-.closeLine {
-  position: absolute;
-  width: 14px;
-  height: 1.5px;
-  border-radius: 2px;
-  background: rgba(148, 163, 184, 0.65);
-  transition: background 0.2s;
-}
-
-.closeLine:nth-child(1) { transform: rotate(45deg); }
-.closeLine:nth-child(2) { transform: rotate(-45deg); }
-
-.closeBtn:hover .closeLine { background: var(--text, #e2e8f0); }
 
 /* ── Divider ──────────────────────────────────────────────────────── */
 .divider {
