@@ -1,0 +1,251 @@
+{
+  "about": "Ben Buğra Yıldırım, Balıkesir Üniversitesi Bilgisayar Mühendisliği öğrencisiyim (2023–2027). Şu anda KOSTÜ İlaç Tasarım Merkezi'nde AI Developer olarak görev yapıyorum; derin öğrenme ve makine öğrenimi modelleriyle moleküler ilaç tasarım süreçlerini hızlandırıyorum. Aynı zamanda HSD Türkiye Balıkesir Kampüs Elçisi olarak 30 kişilik bir topluluğu yönetiyor, HSD Türkiye Medium Komitesi Lider Yardımcısı olarak içerik süreçlerini koordine ediyorum. Milli Teknoloji Akademisi Yapay Zeka Uzmanlık Eğitimi'ni sürdürüyorum. Yapay zeka, derin öğrenme, yazılım mühendisliği ve oyun geliştirme alanlarında üretim odaklı projeler geliştiriyorum; mühendislik birikimimle ölçeklenebilir ve pratik çözümler üretmeyi hedefliyorum.",
+
+  "skills": {
+    "yapay_zeka_ML": ["Python", "PyTorch", "TensorFlow", "Keras", "LangChain", "OpenAI API", "Gemini AI", "YOLO", "YOLOv7", "YOLOv11", "CNN", "EfficientNetB0", "GradCAM", "ChromaDB", "RAG", "NLP", "LLM", "ONNX", "FastAPI", "Machine Learning", "Deep Learning"],
+    "bulut": ["Huawei Cloud", "Firebase"],
+    "oyun_gelistirme": ["Unity", "C#", "FL Studio", "2D Oyun Geliştirme", "3D Oyun Geliştirme", "Pixel Art", "Game Jam"],
+    "masaustu_uygulamalar": ["PyQt5", "PyQt6", "OpenGL", "SQL", "SQLite", "QtDesigner"],
+    "web_gelistirme": ["React", "JavaScript", "HTML", "CSS", "Flask", "GSAP", "Vite", "Vercel", "Responsive Design", "Framer Motion"],
+    "mobil": ["Flutter", "Firebase", "Dart"],
+    "haberlesme_sistemler": ["WebRTC", "Seri İletişim", "Telemetri", "Firebase Realtime DB", "Arduino (C++)"],
+    "veri_araclar": ["Pandas", "OpenPyXL", "Git", "GitHub", "Gradio", "OpenRocket"],
+    "liderlik": ["Topluluk Yönetimi", "Proje Yönetimi", "Mentörlük", "Takım Liderliği", "Etkinlik Organizasyonu"]
+  },
+
+  "projects": [
+    {
+      "name": "SFDDS",
+      "short_description": "YOLOv7, YOLOv11 ve YOLOv26 mimarileri kullanılarak geliştirilmiş tekstil kusur tespit sistemi.",
+      "long_description": "Otomatik derin öğrenme pipeline'ı ile gerçek zamanlı tekstil kusurlarını tespit eden uçtan uca kalite kontrol çözümüdür. XML-to-YOLO koordinat dönüşümü, otomatik sınıf dengeleme ve yerel dağıtım için ONNX formatına aktarılmış yüksek performanslı çıkarım modelleri içermektedir. TechXtile Challenge – Level-Up kategorisinde finalist olmuştur.",
+      "stack": ["Python", "YOLOv7", "YOLOv11", "ONNX", "Computer Vision", "Deep Learning"],
+      "tags": ["YOLO", "Computer Vision", "Deep Learning", "ONNX", "Textile", "Quality Control"],
+      "github": "https://github.com/sbugrayy/SFDDS",
+      "achievement": "TechXtile Challenge Finalist"
+    },
+    {
+      "name": "Sağlıkla",
+      "short_description": "Diyabet ve çölyak hastaları için yapay zeka destekli mobil sağlık asistanı.",
+      "long_description": "Flutter, Firebase, Gemini AI ve OpenFoodFacts entegrasyonuyla geliştirilen kişiselleştirilmiş beslenme riski değerlendirmesi sunan mobil sağlık uygulamasıdır. Yapay zeka destekli karar servisi ile gerçek zamanlı içerik analizi, kalori ve karbonhidrat tahmini yapılmaktadır. Global temalı AppJam Hackathon'da 2.'lik ödülü kazanmıştır.",
+      "stack": ["Flutter", "Firebase", "Gemini AI", "OpenFoodFacts", "Dart"],
+      "tags": ["Flutter", "Firebase", "Gemini AI", "Mobile Health", "Hackathon"],
+      "github": "https://github.com/sbugrayy/Saglikla-App",
+      "achievement": "AppJam Hackathon 2.'lik"
+    },
+    {
+      "name": "İKA Kontrol Sistemi",
+      "short_description": "TEKNOFEST için geliştirilen çoklu kamera entegrasyonu, gerçek zamanlı veri senkronizasyonu ve uzaktan motor kontrolü sistemi.",
+      "long_description": "TEKNOFEST İKA yarışması için ATLAS Techworks bünyesinde geliştirilen savunma sanayi uygulamasıdır. PyQt6 tabanlı kontrol ve izleme sistemi, çoklu kamera entegrasyonu, Firebase ile gerçek zamanlı veri senkronizasyonu ve WebRTC video streaming içermektedir.",
+      "stack": ["PyQt6", "Firebase", "WebRTC", "Python", "JavaScript"],
+      "tags": ["WebRTC", "PyQt6", "Firebase", "Python", "Defense", "TEKNOFEST"],
+      "github": "https://github.com/sbugrayy/IkaApp"
+    },
+    {
+      "name": "Brain Tumor MRI Classification",
+      "short_description": "MRI görüntülerinden beyin tümörü sınıflandırması için CNN ve EfficientNetB0 tabanlı derin öğrenme modeli.",
+      "long_description": "Akbank Deep Learning Bootcamp projesi kapsamında geliştirilmiştir. Veri artırma, hiperparametre optimizasyonu ve EarlyStopping/ReduceLROnPlateau callback'leriyle eğitilen model %84 doğrulama doğruluğuna ulaşmıştır. GradCAM ile karar alma süreçleri görselleştirilerek model açıklanabilirliği sağlanmış; karışıklık matrisi ve sınıflandırma raporuyla detaylı performans analizi yapılmıştır.",
+      "stack": ["Python", "TensorFlow", "Keras", "CNN", "EfficientNetB0", "GradCAM"],
+      "tags": ["CNN", "EfficientNetB0", "Deep Learning", "Medical Imaging", "GradCAM", "TensorFlow"],
+      "github": "https://github.com/sbugrayy/Brain-Tumor-MRI-Akbank-Bootcamp",
+      "achievement": "Akbank Deep Learning Bootcamp"
+    },
+    {
+      "name": "Roket Yer İstasyonu",
+      "short_description": "Yüksek irtifa roketi için 3D görselleştirme ve çoklu seri port iletişimi olan gerçek zamanlı telemetri yer istasyonu.",
+      "long_description": "Misya Havacılık ve Uzay Teknolojileri bünyesinde geliştirilen PyQt5 tabanlı gerçek zamanlı telemetri sistemi. 3D roket görselleştirme, çoklu seri port iletişimi, GPS, IMU ve çevresel sensör verileri entegrasyonu içermektedir.",
+      "stack": ["PyQt5", "Python", "OpenGL", "Arduino"],
+      "tags": ["PyQt5", "OpenGL", "Rocket", "Telemetry", "TEKNOFEST"],
+      "github": "https://github.com/sbugrayy/Ground-Station"
+    },
+    {
+      "name": "AdOptima",
+      "short_description": "Google Ads bütçe optimizasyon ve yönetim aracı. Coğrafi kısıtlar altında otomatik bütçe dağılımı yapıyor.",
+      "long_description": "Python, Pandas, Gradio ve OpenPyXL teknolojileri kullanılarak geliştirilen web tabanlı veri işleme aracıdır. Coğrafi harcama kısıtları altında optimizasyon mantığı içeren performans tabanlı dinamik bütçe dağıtım algoritması tasarlanmıştır. Manuel bütçe yönetimini saniyeler içinde otomatize ediyor.",
+      "stack": ["Python", "Pandas", "Gradio", "OpenPyXL"],
+      "tags": ["Python", "Pandas", "Gradio", "Google Ads", "Budget Optimization"],
+      "github": ""
+    },
+    {
+      "name": "Quiz Creator AI",
+      "short_description": "Verilen konudan yapay zeka ile çoktan seçmeli sorular üreten interaktif quiz uygulaması.",
+      "long_description": "React tabanlı frontend ve Flask serverless backend kullanılarak geliştirilmiş, Google Gemini API entegrasyonuyla çalışan web uygulamasıdır. Kullanıcı tarafından belirlenen konu ve zorluk seviyesine göre 1-50 arası soru üretmektedir. Programlama sorularında kod örnekleri de sunulmaktadır. GSAP animasyonları ile modern bir kullanıcı arayüzüne sahip olup Vercel üzerinde deploy edilmiştir.",
+      "stack": ["React", "Flask", "Python", "Gemini AI", "GSAP"],
+      "tags": ["React", "Flask", "Python", "Gemini AI", "GSAP", "Vercel"],
+      "github": "https://github.com/sbugrayy/Quiz-Creator-AI",
+      "url": "https://quizcreatorai.vercel.app/"
+    },
+    {
+      "name": "Safir",
+      "short_description": "EgeKaf GameJam 2025'te 2.'lik kazanan 2D platform pixel art oyunu.",
+      "long_description": "Unity ve C# ile geliştirilen 2D platform pixel art oyunudur. FL Studio ile özgün müzik de bestelendi. EgeKaf GameJam 2025'te 2.'lik elde edildi.",
+      "stack": ["Unity", "C#", "FL Studio"],
+      "tags": ["Unity", "C#", "Game Jam", "2D", "Pixel Art"],
+      "github": "https://github.com/llmergenll/AnlyanPolis",
+      "url": "https://lmergenl.itch.io/safir",
+      "achievement": "EgeKaf GameJam 2025 2.'lik"
+    },
+    {
+      "name": "Time Machine",
+      "short_description": "GNG Jam'de 48 saatte geliştirilen 3.'lük kazanan zaman yolculuğu macera oyunu.",
+      "long_description": "Taş Devri'ne kazara ışınlanan Hikmet'in kendi çağına dönüş macerasını konu alan 2D oyundur. GNG Jam kapsamında 48 saatlik maratonda Unity ile geliştirilmiş ve takım olarak 3.'lük elde edilmiştir.",
+      "stack": ["Unity", "C#"],
+      "tags": ["Unity", "C#", "Game Jam", "2D", "Adventure"],
+      "github": "https://github.com/sbugrayy/GNGjam",
+      "url": "https://fiuby.com/games/timemachine",
+      "achievement": "GNG Jam 3.'lük"
+    },
+    {
+      "name": "Hızlı Gol",
+      "short_description": "İki kişilik web tabanlı klavye kontrollu futbol oyunu — tamamen tarayıcıda çalışıyor.",
+      "long_description": "HTML, CSS ve JavaScript ile geliştirilmiş, iki oyuncunun aynı klavyeyle oynayabildiği web tabanlı futbol oyunudur.",
+      "stack": ["HTML", "CSS", "JavaScript", "FL Studio"],
+      "tags": ["HTML", "CSS", "JavaScript", "Game", "Web"],
+      "github": "https://github.com/sbugrayy/internet-futbol-game",
+      "url": "https://sbugrayy.github.io/internet-futbol-game/"
+    },
+    {
+      "name": "Terlikçi",
+      "short_description": "Balıkesir Teknokent GameJam 2025'te geliştirilen 2D pixel art oyunu.",
+      "long_description": "Balıkesir Teknokent GameJam 2025 kapsamında Unity ve C# ile geliştirilen 2D pixel art oyunudur. FL Studio ile özgün müzik bestelendi.",
+      "stack": ["Unity", "C#", "FL Studio"],
+      "tags": ["Unity", "C#", "Game Jam", "2D", "Pixel Art"],
+      "github": "https://github.com/sbugrayy/Terlikci"
+    },
+    {
+      "name": "Farm Game",
+      "short_description": "3D izometrik hyper casual oyun. Udemy kursu ile geliştirildi.",
+      "long_description": "Unity ve C# ile geliştirilen 3D izometrik hyper casual çiftlik oyunudur. Udemy Android Hyper Casual Game Development kursu kapsamında üretilmiştir.",
+      "stack": ["Unity", "C#", "FL Studio"],
+      "tags": ["Unity", "C#", "3D", "Hyper Casual", "Mobile"],
+      "github": "https://github.com/sbugrayy/Farm-Game"
+    },
+    {
+      "name": "Appreciation",
+      "short_description": "Kariyer Pusulası zirvesi koordinasyon ekibindeki arkadaşlarıma teşekkür için hazırladığım web sitesi.",
+      "long_description": "Kariyer Pusulası etkinliğinde koordinasyon ekibinde yer alan arkadaşlarımı onurlandırmak amacıyla sıfırdan tasarlanmış statik bir web sitesidir. HTML, CSS ve JavaScript ile geliştirilmiş olup etkinliğe özel marka görselleri kullanılmıştır.",
+      "stack": ["HTML", "CSS", "JavaScript"],
+      "tags": ["HTML", "CSS", "JavaScript", "Web"],
+      "github": "https://github.com/sbugrayy/Appreciation",
+      "url": "https://sbugrayy.github.io/Appreciation/"
+    },
+    {
+      "name": "Portfolyo Web Sitesi",
+      "short_description": "Musa Yücesan için yapılan modern ve responsive portfolyo web sitesi.",
+      "long_description": "React, JavaScript, HTML ve CSS kullanılarak geliştirilen modern ve responsive portfolyo web sitesidir.",
+      "stack": ["React", "JavaScript", "HTML", "CSS"],
+      "tags": ["React", "Portfolio", "Web"],
+      "github": "https://github.com/sbugrayy/portfolio-musa",
+      "url": "https://musayucesan.vercel.app/"
+    },
+    {
+      "name": "Tobacco App",
+      "short_description": "Küçük işletmeler için veritabanı yönetimi ve kayıt uygulaması.",
+      "long_description": "PyQt5 ve SQL kullanılarak geliştirilen küçük işletmelere yönelik stok ve kayıt yönetimi masaüstü uygulamasıdır.",
+      "stack": ["PyQt5", "SQL", "Python"],
+      "tags": ["PyQt5", "SQL", "Desktop", "Database"],
+      "github": "https://github.com/sbugrayy/Tobacco-App"
+    },
+    {
+      "name": "Notepad",
+      "short_description": "Notepad++ benzeri özelliklere sahip masaüstü metin düzenleyici uygulaması.",
+      "long_description": "PyQt5 ve QtDesigner ile geliştirilmiş, Notepad++ benzeri arayüze sahip masaüstü metin düzenleyici uygulamasıdır.",
+      "stack": ["PyQt5", "Python", "QtDesigner"],
+      "tags": ["PyQt5", "Desktop", "Text Editor"],
+      "github": "https://github.com/sbugrayy/Notepad"
+    },
+    {
+      "name": "Hava Durumu",
+      "short_description": "OpenWeatherMap API ile çalışan masaüstü hava durumu uygulaması. Hem C# hem Python versiyonu mevcut.",
+      "long_description": "OpenWeatherMap API entegrasyonuyla çalışan masaüstü hava durumu uygulamasıdır. Hem PyQt5 (Python) hem de C# olmak üzere iki farklı versiyonu bulunmaktadır.",
+      "stack": ["PyQt5", "C#", "API"],
+      "tags": ["PyQt5", "C#", "Desktop", "API", "Weather"],
+      "github": "https://github.com/sbugrayy/Weather-App-Python"
+    }
+  ],
+
+  "experience": [
+    {
+      "company": "KOSTÜ - Drug Design Center",
+      "position": "AI Developer",
+      "date": "Mart 2026 – Günümüz",
+      "description": "KOSTÜ İlaç Tasarım Merkezi'nde Dr. Öğr. Üyesi Soykan Ağar liderliğindeki araştırma ekibiyle moleküler ilaç tasarım süreçlerini optimize eden derin öğrenme ve makine öğrenimi modelleri geliştiriyorum. Karmaşık biyoinformatik verileri analiz ederek yenilikçi Ar-Ge projeleri ve hesaplamalı ilaç keşfi girişimlerini hızlandırmaya yönelik tahminsel modelleme mimarileri oluşturuyorum."
+    },
+    {
+      "company": "HUAWEI Student Developers (HSD) Türkiye",
+      "position": "Medium Komitesi Lider Yardımcısı",
+      "date": "Ocak 2026 – Günümüz",
+      "description": "Huawei Türkiye Medium platformunun stratejik ve operasyonel yönetimine katkı sağlıyorum. HSD gönüllü üniversite öğrencilerinin yazdığı içerikler için editöryal iş akışını koordine ediyorum. Öğrenci yazarlara mentörlük yaparak teknik yazım ve analitik becerilerini geliştiriyorum. Yüksek kaliteli içerik standartlarını korumak için editöryal takvim yönetimi yapıyorum."
+    },
+    {
+      "company": "HUAWEI Student Developers (HSD) Türkiye",
+      "position": "Kampüs Elçisi — Balıkesir",
+      "date": "Eylül 2025 – Günümüz",
+      "description": "Huawei ekosisteminde edindiğim sertifikalar: HCCDA-Cloud Native, HCCDA-AI, HCCDA-Tech Essentials, HCSD Campus Ambassador ve Huawei Cloud AI Bootcamp. Balıkesir Üniversitesi'nde HSD topluluğunu kurdum ve yönetiyorum. 30 kişilik bir çekirdek takım kurarak 4 komite halinde yapılandırdım. BAUNTECH Start ve Yazan Zeka programlarında 3 takıma mentörlük yaptım. AppJam'25 yarışmasında mobil uygulama geliştirerek 48 saatlik hackathonda takım olarak 2.'lik, GNG Jam'de Unity tabanlı oyun geliştirerek 48 saatlik game jam'de takım olarak 3.'lük elde ettim. Öğrencileri HCCDA ve Huawei Bootcamp gibi global sertifika programlarına yönlendirdim."
+    },
+    {
+      "company": "TNC Group Şirketleri",
+      "position": "IT Stajyer",
+      "date": "Ağustos 2025 – Eylül 2025",
+      "description": "Bilgi Teknolojileri departmanında uygulamalı IT becerileri üzerine staj yaptım. Python, Excel, Photoshop ve AutoCAD eğitimlerini başarıyla tamamladım. Eğitim sonucu 4 IT projesi geliştirerek güçlü tasarım becerilerimi sergiledim."
+    },
+    {
+      "company": "ATLAS Techworks",
+      "position": "Yazılım Takım Üyesi",
+      "date": "Temmuz 2025 – Eylül 2025",
+      "description": "TEKNOFEST İKA yarışması için rekabetçi bir takımda yazılım geliştirici olarak çalıştım. PyQt6 tabanlı kontrol ve izleme sistemi geliştirdim — çoklu kamera entegrasyonu ile. Firebase ile gerçek zamanlı veri senkronizasyonu ve WebRTC akışı uyguladım. Uzaktan motor kontrolü imkânı sağlayarak sistem işlevselliğini artırdım."
+    },
+    {
+      "company": "Misya Havacılık ve Uzay Teknolojileri",
+      "position": "Yazılım Takım Üyesi",
+      "date": "Kasım 2024 – Temmuz 2025",
+      "description": "Yüksek irtifa roket takımında yazılım geliştirici olarak çalıştım. Yer istasyonu uygulaması ve aviyonik algoritma yazılımı geliştirdim. PyQt5 tabanlı gerçek zamanlı telemetri sistemi oluşturdum — 3D roket görselleştirme ve çoklu seri port iletişimi ile. GPS, IMU ve çevresel izleme için kapsamlı sensör verisi entegrasyonu yaptım."
+    }
+  ],
+
+  "education": [
+    {
+      "school": "Balıkesir Üniversitesi",
+      "degree": "Lisans",
+      "field": "Bilgisayar Mühendisliği",
+      "period": "2023 – 2027",
+      "description": "Balıkesir Üniversitesi Bilgisayar Mühendisliği bölümünde öğrenciyim. Yapay zeka, sistem programlama ve yazılım mühendisliği odaklı projeler geliştiriyorum."
+    },
+    {
+      "school": "Milli Teknoloji Akademisi",
+      "degree": "Uzmanlık Eğitimi",
+      "field": "Yapay Zeka",
+      "period": "2026 – Devam Ediyor",
+      "description": "Milli Teknoloji Akademisi bünyesinde Yapay Zeka Uzmanlık Eğitimi'ni sürdürüyorum."
+    }
+  ],
+
+  "certifications": [
+    "Yapay Zeka Uzmanlık Programı - Temel Eğitim Sertifikası",
+    "HCCDA-Cloud Native (Huawei)",
+    "HCCDA-AI (Huawei)",
+    "HCCDA-Tech Essentials (Huawei)",
+    "HCSD Campus Ambassador (Huawei)",
+    "Huawei Cloud AI Bootcamp",
+    "Akbank Deep Learning Bootcamp",
+    "BT Staj Katılım Belgesi (TNC Group)",
+    "Introduction to Generative AI (Google)",
+    "Balıkesir Teknokent Bootcamp + Gamejam",
+    "BaunTECH Start (Balıkesir Teknokent)",
+    "The AI Summit (Uludağ Üniversitesi)",
+    "Egekaf'25 PAGİT DOGE Gamejam (2.'lik)",
+    "Kariyer Pusulası Certificate",
+    "Teşekkür Belgesi (Balıkesir Üniversitesi)",
+    "Python Programming from Beginner to Advanced",
+    "Unity Android Hyper Casual Game Development",
+    "English Language Course (B1+)",
+    "OpenRocket"
+  ],
+
+  "contact": {
+    "email": "bugrayil351@gmail.com",
+    "linkedin": "https://www.linkedin.com/in/bugra-yildirim",
+    "github": "https://github.com/sbugrayy",
+    "medium": "https://medium.com/@bugrayildirim",
+    "youtube": "https://www.youtube.com/@subnine9937"
+  }
+}

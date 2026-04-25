@@ -1,0 +1,38 @@
+# Ortam değişkenleri
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+env/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# ChromaDB (git'e ekleme — büyük ve runtime'da üretiliyor)
+backend/data/chroma_db/
+
+# Node.js
+node_modules/
+frontend/dist/
+frontend/.vite/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.suo
+*.user
+
+# Claude Code (kişisel ayarlar)
+.claude/

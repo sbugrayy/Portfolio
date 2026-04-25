@@ -1,0 +1,225 @@
+.section {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+/* ── Reveal animation ────────────────────────────────────────────── */
+.inner {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px;
+  position: relative;
+}
+
+/* ── Ghost number ────────────────────────────────────────────────── */
+.ghost {
+  position: absolute;
+  top: -60px;
+  right: -20px;
+  font-family: var(--mono);
+  font-size: clamp(120px, 18vw, 220px);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.05);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  letter-spacing: -0.04em;
+}
+
+/* ── Section header ──────────────────────────────────────────────── */
+.header {
+  margin-bottom: 64px;
+}
+
+.label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 12px;
+}
+
+.title {
+  font-size: clamp(36px, 6vw, 72px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1;
+}
+
+/* ── Body grid ───────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+/* ── Bio column ──────────────────────────────────────────────────── */
+.profileImageWrapper {
+  margin-bottom: 32px;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(6, 182, 212, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+}
+
+.profileImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+  transition: transform 0.5s ease;
+}
+
+.profileImageWrapper:hover .profileImage {
+  transform: scale(1.05);
+}
+
+.bio {
+  font-size: 17px;
+  line-height: 1.8;
+  color: var(--text-dim);
+  margin-bottom: 40px;
+  max-width: 560px;
+}
+
+.stackWrap {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: rgba(148, 163, 184, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  padding: 4px 10px;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.chip:hover {
+  border-color: rgba(6, 182, 212, 0.4);
+  color: var(--cyan);
+}
+
+/* ── Right column ────────────────────────────────────────────────── */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ── Stats ───────────────────────────────────────────────────────── */
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.stat {
+  padding: 28px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.stat:hover {
+  border-color: rgba(6, 182, 212, 0.18);
+  background: rgba(6, 182, 212, 0.03);
+}
+
+.statNum {
+  font-family: var(--mono);
+  font-size: 36px;
+  font-weight: 500;
+  color: var(--text);
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+
+/* ── Education ───────────────────────────────────────────────────── */
+.edu {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.eduItem {
+  display: grid;
+  grid-template-rows: auto auto;
+  padding: 20px 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  gap: 4px;
+}
+
+.eduDate {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--cyan);
+  text-transform: uppercase;
+}
+
+.eduSchool {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.eduDegree {
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+/* ── Location ────────────────────────────────────────────────────── */
+.location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(148, 163, 184, 0.45);
+}
+
+.location svg {
+  color: var(--cyan);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ──────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .inner   { padding: 0 32px; }
+  .grid    { grid-template-columns: 1fr; gap: 48px; }
+  .ghost   { font-size: 18vw; top: -40px; right: -10px; }
+}
+
+@media (max-width: 640px) {
+  .inner  { padding: 0 20px; }
+  .section { padding: 80px 0; }
+  .stats  { grid-template-columns: 1fr 1fr; }
+  .ghost  { display: none; }
+}

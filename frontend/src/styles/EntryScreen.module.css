@@ -1,0 +1,129 @@
+/* EntryScreen.module.css */
+
+.container {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  background: #050510;
+  z-index: 100;
+  overflow: hidden;
+}
+
+/* ── Arka plan ─────────────────────────────────────────────────── */
+.bgGrid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(124,58,237,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,0.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+  animation: gridPulse 8s ease-in-out infinite;
+}
+
+@keyframes gridPulse {
+  0%, 100% { opacity: 0.6; }
+  50%       { opacity: 1; }
+}
+
+.bgGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(124,58,237,0.14) 0%,
+    transparent 68%
+  );
+  pointer-events: none;
+  animation: glowPulse 4s ease-in-out infinite;
+}
+
+.bgGlow2 {
+  position: absolute;
+  top: 30%;
+  right: 15%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(6,182,212,0.07) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  animation: glowPulse 6s ease-in-out infinite reverse;
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  50%       { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* ── Başlık ────────────────────────────────────────────────────── */
+.titleGroup {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,0.5);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: clamp(3.5rem, 11vw, 7.5rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 50%, #ec4899 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 40px rgba(124,58,237,0.6));
+  line-height: 1;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(148,163,184,0.45);
+  margin-top: 0.6rem;
+}
+
+/* ── Açıklama ──────────────────────────────────────────────────── */
+.desc {
+  font-size: 1.05rem;
+  color: rgba(226,232,240,0.55);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Yükleme çubuğu ────────────────────────────────────────────── */
+.progressWrap {
+  width: 180px;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #7c3aed, #06b6d4);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  width: 100%;
+}

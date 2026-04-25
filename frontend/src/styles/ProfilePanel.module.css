@@ -1,0 +1,130 @@
+/* ProfilePanel.module.css */
+
+.panel {
+  position: fixed;
+  top: 1.4rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.4rem;
+
+  background: rgba(5, 5, 20, 0.72);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  border: 1px solid rgba(124, 58, 237, 0.22);
+  border-radius: 20px;
+  box-shadow:
+    0 0 32px rgba(124, 58, 237, 0.12),
+    inset 0 0 16px rgba(124, 58, 237, 0.04);
+
+  white-space: nowrap;
+  pointer-events: all;
+  user-select: none;
+}
+
+/* Avatar halka */
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+  box-shadow: 0 0 14px rgba(124, 58, 237, 0.5);
+}
+
+/* İsim ve ünvan */
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.name {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  letter-spacing: 0.01em;
+}
+
+.title {
+  margin: 0;
+  font-size: 0.72rem;
+  color: rgba(148, 163, 184, 0.7);
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.badge {
+  font-size: 0.6rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #06b6d4;
+  background: rgba(6, 182, 212, 0.12);
+  border: 1px solid rgba(6, 182, 212, 0.3);
+  border-radius: 4px;
+  padding: 0.1rem 0.4rem;
+}
+
+.school {
+  margin: 0;
+  font-size: 0.67rem;
+  color: rgba(148, 163, 184, 0.45);
+}
+
+/* Ayırıcı */
+.panel::before {
+  content: '';
+  width: 1px;
+  height: 32px;
+  background: rgba(124, 58, 237, 0.2);
+  flex-shrink: 0;
+}
+
+/* Linkler */
+.links {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.73rem;
+  font-weight: 500;
+  color: rgba(148, 163, 184, 0.7);
+  text-decoration: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  transition: all 0.2s ease;
+}
+
+.link:hover {
+  color: #e2e8f0;
+  background: rgba(124, 58, 237, 0.15);
+  border-color: rgba(124, 58, 237, 0.4);
+  box-shadow: 0 0 10px rgba(124, 58, 237, 0.2);
+}
+
+.link.linkedin:hover {
+  color: #e2e8f0;
+  background: rgba(6, 182, 212, 0.12);
+  border-color: rgba(6, 182, 212, 0.35);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+}

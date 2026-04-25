@@ -1,0 +1,26 @@
+/* StemVisualizer.module.css */
+
+.container {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.label {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: rgba(148,163,184,0.28);
+  text-transform: uppercase;
+  font-family: var(--mono, monospace);
+}
+
+.canvas {
+  border-radius: 4px;
+  opacity: 0.65;
+  display: block;
+}
