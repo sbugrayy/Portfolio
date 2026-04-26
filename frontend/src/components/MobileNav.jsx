@@ -102,10 +102,18 @@ export default function MobileNav() {
           />
         </button>
 
-        {/* Monogram — sağ */}
-        <button className={styles.monogram} onClick={() => scrollTo('home')}>
-          BUĞRA.AI
-        </button>
+        {/* Dil toggle — sağ */}
+        <div className={styles.langRow}>
+          {['tr', 'en'].map(lang => (
+            <button
+              key={lang}
+              className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
+              onClick={() => setLanguage(lang)}
+            >
+              {lang.toUpperCase()}
+            </button>
+          ))}
+        </div>
       </nav>
 
       {/* ── Drawer + Backdrop ───────────────────────────────── */}
@@ -130,25 +138,10 @@ export default function MobileNav() {
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', stiffness: 340, damping: 34 }}
             >
-              {/* Drawer header */}
-              <div className={styles.drawerHeader}>
-                <div className={styles.drawerBrand}>
-                  <span className={styles.drawerTitle}>BUĞRA.AI</span>
-                  <span className={styles.drawerSub}>Dijital Klon</span>
-                </div>
-
-                {/* Dil toggle */}
-                <div className={styles.langRow}>
-                  {['tr', 'en'].map(lang => (
-                    <button
-                      key={lang}
-                      className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
-                      onClick={() => setLanguage(lang)}
-                    >
-                      {lang.toUpperCase()}
-                    </button>
-                  ))}
-                </div>
+              {/* Brand */}
+              <div className={styles.drawerBrand}>
+                <span className={styles.drawerTitle}>BUĞRA.AI</span>
+                <span className={styles.drawerSub}>Dijital Klon</span>
               </div>
 
               {/* Divider */}
