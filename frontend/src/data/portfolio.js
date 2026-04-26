@@ -246,7 +246,7 @@ export const certifications = [
   { name: 'HCSD Campus Ambassador', issuer: 'Huawei', image: '/images/Huawei Cloud HCSD-Campus Certification.webp' },
   { name: 'BaunTECH Start.', issuer: 'Balıkesir Teknokent', image: '/images/BaunTECH Start Katılım Belgesi.webp' },
   { name: 'Python: Sıfırdan İleri Seviyeye', name_en: 'Python: Zero to Advanced', issuer: 'Udemy', image: '/images/Python Sıfırdan İleri Seviye Programlama.webp' },
-  { name: 'English — Intermediate (B1+)', issuer: 'Dil Okulu', image: '/images/English Language Course - Intermediate B1+.webp' },
+  { name: 'English — Intermediate (B1+)', issuer: 'Dil Okulu', image: '/images/english-intermediate-b1.webp' },
   { name: 'Teknokent Bootcamp+Gamejam', issuer: 'Balıkesir Teknokent', image: '/images/Teknokent Bootcamp Gamejam.webp' },
   { name: "Egekaf'25 Gamejam — 2.'lik", name_en: "Egekaf'25 Gamejam — 2nd Place", issuer: 'PAGİT DOGE', image: '/images/Teşekkür Belgesi.webp' },
 ];
