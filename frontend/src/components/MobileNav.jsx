@@ -14,25 +14,33 @@ const SECTIONS = [
   { id: 'contact',        translationKey: 'navContact' },
 ];
 
+const LINE_VARIANTS = {
+  top:    { closed: { rotate: 0,   y: 0 },  open: { rotate: 45,  y: 7  } },
+  mid:    { closed: { opacity: 1,  scaleX: 1 }, open: { opacity: 0, scaleX: 0 } },
+  bottom: { closed: { rotate: 0,   y: 0 },  open: { rotate: -45, y: -7 } },
+};
+
 const ITEM_VARIANTS = {
   hidden: { opacity: 0, x: -28 },
   show:   (i) => ({ opacity: 1, x: 0, transition: { delay: 0.05 + i * 0.055, duration: 0.32, ease: 'easeOut' } }),
 };
 
 export default function MobileNav() {
-  const [open, setOpen]         = useState(false);
-  const [active, setActive]     = useState('home');
+  const [open, setOpen]     = useState(false);
+  const [active, setActive] = useState('home');
   const [scrolled, setScrolled] = useState(false);
   const language    = useStore(s => s.language);
   const setLanguage = useStore(s => s.setLanguage);
   const t = translations[language];
 
+  /* Scroll glass effect */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  /* Active section detection */
   useEffect(() => {
     const observers = [];
     SECTIONS.forEach(({ id }) => {
@@ -48,6 +56,7 @@ export default function MobileNav() {
     return () => observers.forEach(o => o.disconnect());
   }, []);
 
+  /* Body scroll lock when drawer open */
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
     return () => { document.body.style.overflow = ''; };
@@ -58,56 +67,45 @@ export default function MobileNav() {
     setOpen(false);
   };
 
+  const toggle = () => setOpen(o => !o);
+  const state  = open ? 'open' : 'closed';
+
   return (
     <>
       {/* ── Top bar ─────────────────────────────────────────── */}
       <nav className={`${styles.bar} ${scrolled ? styles.scrolled : ''}`}>
 
-        {/* Hamburger ↔ ✕ — toggle */}
+        {/* Hamburger — sol */}
         <button
           className={styles.hamburger}
-          onClick={() => setOpen(o => !o)}
+          onClick={toggle}
           aria-label={open ? 'Menüyü kapat' : 'Menüyü aç'}
           aria-expanded={open}
         >
-          {/* Üst çizgi */}
           <motion.span
             className={styles.line}
-            animate={open
-              ? { rotate: 45, y: 7, width: 22 }
-              : { rotate: 0,  y: 0, width: 22 }}
-            transition={{ duration: 0.26, ease: 'easeInOut' }}
+            variants={LINE_VARIANTS.top}
+            animate={state}
+            transition={{ duration: 0.28, ease: 'easeInOut' }}
           />
-          {/* Orta çizgi */}
           <motion.span
             className={styles.line}
-            animate={open
-              ? { opacity: 0, scaleX: 0 }
-              : { opacity: 1, scaleX: 1 }}
-            transition={{ duration: 0.18, ease: 'easeInOut' }}
+            variants={LINE_VARIANTS.mid}
+            animate={state}
+            transition={{ duration: 0.2, ease: 'easeInOut' }}
           />
-          {/* Alt çizgi */}
           <motion.span
             className={styles.line}
-            animate={open
-              ? { rotate: -45, y: -7, width: 22 }
-              : { rotate:  0,  y:  0, width: 22 }}
-            transition={{ duration: 0.26, ease: 'easeInOut' }}
+            variants={LINE_VARIANTS.bottom}
+            animate={state}
+            transition={{ duration: 0.28, ease: 'easeInOut' }}
           />
         </button>
 
-        {/* Dil toggle — sağ */}
-        <div className={styles.langRow}>
-          {['tr', 'en'].map(lang => (
-            <button
-              key={lang}
-              className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
-              onClick={() => setLanguage(lang)}
-            >
-              {lang.toUpperCase()}
-            </button>
-          ))}
-        </div>
+        {/* Monogram — sağ */}
+        <button className={styles.monogram} onClick={() => scrollTo('home')}>
+          BUĞRA.AI
+        </button>
       </nav>
 
       {/* ── Drawer + Backdrop ───────────────────────────────── */}
@@ -124,7 +122,7 @@ export default function MobileNav() {
               onClick={() => setOpen(false)}
             />
 
-            {/* Drawer — top: 0, üst barın altından başlar görsel olarak */}
+            {/* Drawer */}
             <motion.aside
               className={styles.drawer}
               initial={{ x: '-100%' }}
@@ -132,10 +130,25 @@ export default function MobileNav() {
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', stiffness: 340, damping: 34 }}
             >
-              {/* Brand — üst bar yüksekliği kadar boşluk bırakır */}
-              <div className={styles.drawerBrand}>
-                <span className={styles.drawerTitle}>BUĞRA.AI</span>
-                <span className={styles.drawerSub}>Dijital Klon</span>
+              {/* Drawer header */}
+              <div className={styles.drawerHeader}>
+                <div className={styles.drawerBrand}>
+                  <span className={styles.drawerTitle}>BUĞRA.AI</span>
+                  <span className={styles.drawerSub}>Dijital Klon</span>
+                </div>
+
+                {/* Dil toggle */}
+                <div className={styles.langRow}>
+                  {['tr', 'en'].map(lang => (
+                    <button
+                      key={lang}
+                      className={`${styles.langBtn} ${language === lang ? styles.langActive : ''}`}
+                      onClick={() => setLanguage(lang)}
+                    >
+                      {lang.toUpperCase()}
+                    </button>
+                  ))}
+                </div>
               </div>
 
               {/* Divider */}
@@ -169,7 +182,7 @@ export default function MobileNav() {
                 })}
               </nav>
 
-              {/* Footer */}
+              {/* Drawer footer */}
               <div className={styles.drawerFooter}>
                 <a
                   href="https://github.com/sbugrayy"

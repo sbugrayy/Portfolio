@@ -1,12 +1,3 @@
----
-title: Portfolio API
-emoji: 🤖
-colorFrom: blue
-colorTo: purple
-sdk: docker
-pinned: false
----
-
 # BUĞRA.AI — Digital Clone Portfolio
 
 > "You won't read a portfolio — you'll talk to me."
