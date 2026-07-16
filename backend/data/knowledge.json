@@ -1,5 +1,5 @@
 {
-  "about": "Ben Buğra Yıldırım, Balıkesir Üniversitesi Bilgisayar Mühendisliği öğrencisiyim (2023–2027). Şu anda KOSTÜ İlaç Tasarım Merkezi'nde AI Developer olarak görev yapıyorum; derin öğrenme ve makine öğrenimi modelleriyle moleküler ilaç tasarım süreçlerini hızlandırıyorum. Aynı zamanda HSD Türkiye Balıkesir Kampüs Elçisi olarak 30 kişilik bir topluluğu yönetiyor, HSD Türkiye Medium Komitesi Lider Yardımcısı olarak içerik süreçlerini koordine ediyorum. Milli Teknoloji Akademisi Yapay Zeka Uzmanlık Eğitimi'ni sürdürüyorum. Yapay zeka, derin öğrenme, yazılım mühendisliği ve oyun geliştirme alanlarında üretim odaklı projeler geliştiriyorum; mühendislik birikimimle ölçeklenebilir ve pratik çözümler üretmeyi hedefliyorum.",
+  "about": "Ben Buğra Yıldırım, Balıkesir Üniversitesi Bilgisayar Mühendisliği öğrencisiyim (2023–2027). Şu anda Microsoft AI Innovators Staj Programı kapsamında Microsoft Foundry Local ve RAG (Retrieval-Augmented Generation) mimarisiyle tamamen çevrimdışı çalışan bir doküman soru-cevap asistanı geliştiriyorum; aynı zamanda Cats Bilişim'de Yazılım Mühendisliği Stajyeri olarak görev yapıyorum. HSD Türkiye Balıkesir Kampüs Elçisi olarak 30 kişilik bir topluluğu yönetiyor, HSD Türkiye Medium Komitesi Lider Yardımcısı olarak içerik süreçlerini koordine ediyorum. Milli Teknoloji Akademisi Yapay Zeka Uzmanlık Eğitimi'ni sürdürüyorum. Yapay zeka, derin öğrenme, yazılım mühendisliği ve oyun geliştirme alanlarında üretim odaklı projeler geliştiriyorum; mühendislik birikimimle ölçeklenebilir ve pratik çözümler üretmeyi hedefliyorum.",
 
   "skills": {
     "yapay_zeka_ML": ["Python", "PyTorch", "TensorFlow", "Keras", "LangChain", "OpenAI API", "Gemini AI", "YOLO", "YOLOv7", "YOLOv11", "CNN", "EfficientNetB0", "GradCAM", "ChromaDB", "RAG", "NLP", "LLM", "ONNX", "FastAPI", "Machine Learning", "Deep Learning"],
@@ -165,10 +165,16 @@
 
   "experience": [
     {
-      "company": "KOSTÜ - Drug Design Center",
-      "position": "AI Developer",
-      "date": "Mart 2026 – Günümüz",
-      "description": "KOSTÜ İlaç Tasarım Merkezi'nde Dr. Öğr. Üyesi Soykan Ağar liderliğindeki araştırma ekibiyle moleküler ilaç tasarım süreçlerini optimize eden derin öğrenme ve makine öğrenimi modelleri geliştiriyorum. Karmaşık biyoinformatik verileri analiz ederek yenilikçi Ar-Ge projeleri ve hesaplamalı ilaç keşfi girişimlerini hızlandırmaya yönelik tahminsel modelleme mimarileri oluşturuyorum."
+      "company": "Cats Bilişim (Cats Software Development)",
+      "position": "Yazılım Mühendisliği Stajyeri",
+      "date": "Temmuz 2026 – Eylül 2026",
+      "description": "Cats Bilişim bünyesinde Yazılım Mühendisliği Stajyeri olarak görev yapıyorum. Cats Bilişim, modern teknolojileri takip ederek ve modern donanım ile iletişim teknolojileriyle entegre çalışarak kamu ve özel sektör kurumlarına yönelik kurumsal yazılım çözümleri geliştiren, genç ve dinamik kadrosuyla çözüm ortaklığına dayalı hizmet sunan bir yazılım şirketidir."
+    },
+    {
+      "company": "Microsoft",
+      "position": "AI Engineer Stajyeri",
+      "date": "Haziran 2026 – Günümüz",
+      "description": "Microsoft AI Innovators Staj Programı kapsamında, Microsoft Foundry Local ve RAG (Retrieval-Augmented Generation) mimarisini kullanarak tamamen çevrimdışı çalışan bir doküman soru-cevap asistanı geliştiriyorum. Dokümanları parçalara ayırıp embedding üreten ve SQLite vektör veritabanında saklayan yerel bir veri alım hattı kurdum; cosine similarity tabanlı bilgi getirme mekanizmasını uyguladım ve Foundry Local üzerinden yerel bir LLM entegre ederek kaynak referanslı, güvenilir yanıtlar üretilmesini sağladım. Çalışan bir arayüz, uçtan uca test süreci ve kapsamlı proje dokümantasyonu teslim ettim. Türkiye'den uzaktan çalışıyorum."
     },
     {
       "company": "HUAWEI Student Developers (HSD) Türkiye",
