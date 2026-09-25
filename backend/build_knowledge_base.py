@@ -119,6 +119,14 @@ def build_documents(knowledge: dict) -> list[Document]:
             metadata={"source": "certifications", "source_type": "certifications"},
         ))
 
+    # 6b. Diller — tek belge
+    langs = knowledge.get("languages", [])
+    if langs:
+        docs.append(Document(
+            page_content="Konuştuğum diller:\n" + "\n".join(f"- {l}" for l in langs),
+            metadata={"source": "languages", "source_type": "languages"},
+        ))
+
     # 7. Konu özetleri — sıkça sorulan konular için odaklı belgeler
     # Huawei özeti: tüm HSD rolleri + Huawei sertifikaları tek chunk'ta
     huawei_exps = [

@@ -126,7 +126,7 @@
 /* ── Stats ───────────────────────────────────────────────────────── */
 .stats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2px;
 }
 
@@ -220,6 +220,9 @@
 @media (max-width: 640px) {
   .inner  { padding: 0 20px; }
   .section { padding: 80px 0; }
-  .stats  { grid-template-columns: 1fr 1fr; }
+  .stats    { grid-template-columns: repeat(3, 1fr); }
+  .stat     { padding: 20px 12px; }
+  .statNum  { font-size: 26px; }
+  .statLabel { font-size: 9px; letter-spacing: 0.08em; }
   .ghost  { display: none; }
 }
