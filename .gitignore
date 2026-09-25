@@ -36,3 +36,8 @@ Thumbs.db
 
 # Claude Code (kişisel ayarlar)
 .claude/
+
+# Ortam değişkenleri — asla commit edilmez
+.env
+.env.*
+!.env.example

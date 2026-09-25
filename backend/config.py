@@ -28,7 +28,7 @@ EMBEDDING_PROVIDER = os.getenv("EMBEDDING_PROVIDER", "local")
 LOCAL_EMBEDDING_MODEL = os.getenv("LOCAL_EMBEDDING_MODEL", "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2")
 
 # Chat modeli (Groq üzerinden)
-CHAT_MODEL = os.getenv("CHAT_MODEL", "llama-3.3-70b-versatile")
+CHAT_MODEL = os.getenv("CHAT_MODEL", "qwen/qwen3.8-27b")
 
 # Her chunk'ın maksimum karakter boyutu
 CHUNK_SIZE = 600
