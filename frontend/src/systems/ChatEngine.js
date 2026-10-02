@@ -24,8 +24,10 @@ const newId = () => `msg-${++msgCounter}-${Date.now()}`;
 export async function sendMessage(query) {
   const store = useStore.getState();
 
-  // 1. Geçmiş mesajları topla (kullanıcı mesajı eklenmeden önce)
+  // 1. Geçmiş mesajları topla (kullanıcı mesajı eklenmeden önce).
+  //    Hata mesajları geçmişe girmez; model onları kendi cevabı sanmasın.
   const history = useStore.getState().messages
+    .filter((m) => !m.isError)
     .slice(-(MAX_HISTORY_TURNS * 2))
     .map((m) => ({ role: m.role, content: m.text }));
 
@@ -43,7 +45,8 @@ export async function sendMessage(query) {
     const res = await fetch(`${API_URL}/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query, history }),
+      // lang: arayüz dili — soru dili belirsizse ("ok", "hi") cevap dili buna göre seçilir
+      body: JSON.stringify({ query, history, lang: store.language }),
     });
 
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
@@ -70,7 +73,7 @@ export async function sendMessage(query) {
     console.error('Chat isteği başarısız:', err);
     const lang = store.language;
     const fallback = translations[lang]?.chatError || "Üzgünüm, şu an bir sorun oluştu. Lütfen tekrar dene.";
-    store.addMessage({ id: newId(), role: 'assistant', text: fallback, displayText: fallback });
+    store.addMessage({ id: newId(), role: 'assistant', text: fallback, displayText: fallback, isError: true });
     
     // Hata gelse bile animasyonun tamamlanması için minimum süreyi bekle
     const elapsed = Date.now() - startTime;

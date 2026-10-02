@@ -17,6 +17,7 @@
   "projects": [
     {
       "name": "Foundry Local RAG Agent",
+      "aliases": ["Foundry Local", "Foundry", "foundry-local-rag-agent"],
       "short_description": "%100 cihaz üzerinde çalışan agentic RAG doküman zekâsı platformu — Word, PDF ve Excel belgeleriyle sohbet edip kaynak referanslı yanıt ve rapor üretiyor.",
       "long_description": "Microsoft AI Innovators stajım kapsamında .NET 10 (ASP.NET Core Minimal API), Microsoft Foundry Local ve Semantic Kernel ile geliştirdiğim, bulut servisi veya API anahtarı gerektirmeyen tamamen yerel bir doküman zekâsı sistemidir. Word, PDF, Excel ve metin dosyaları yükleniyor; bindirmeli parçalama (overlapping chunking) ile parçalanıp qwen3-embedding-0.6b ile embedding'e çevriliyor ve SQLite'ta kalıcı olarak saklanıyor. Sorgu anında cosine similarity aramasıyla ilgili parçalar getirilip phi-4-mini modeline bağlam olarak veriliyor; yanıtlar kaynak referanslarıyla dönüyor. Native tool-calling küçük modellerde güvenilmez olduğu için, sorguları RAG / özetleme / rapor üretimi arasında dağıtan düşük sıcaklıklı bir JSON router ile agentic yönlendirme tasarladım. Map-reduce özetleme, QuestPDF, OpenXML ve ClosedXML ile indirilebilir Word/Excel/PDF rapor üretimi, @bahsetme sözdizimiyle belge kapsamlı arama, kalıcı sohbet geçmişi, SSE akışlı yanıtlar ve CPU/GPU/NPU otomatik donanım hızlandırması içeriyor. Açık/koyu temalı Türkçe web arayüzüne sahiptir; ilk çıktı süresi 8 saniyeye indirildi.",
       "stack": [".NET 10", "C#", "ASP.NET Core Minimal API", "Microsoft Foundry Local", "Semantic Kernel", "SQLite", "phi-4-mini", "qwen3-embedding-0.6b", "QuestPDF", "OpenXML", "ClosedXML"],
@@ -26,6 +27,7 @@
     },
     {
       "name": "SFDDS",
+      "aliases": ["tekstil kusur", "kumaş kusur", "textile defect", "TechXtile"],
       "short_description": "YOLOv7, YOLOv11 ve YOLOv26 mimarileri kullanılarak geliştirilmiş tekstil kusur tespit sistemi.",
       "long_description": "2025 – Mart 2026 arasında geliştirilen, otomatik derin öğrenme pipeline'ı ile gerçek zamanlı tekstil kusurlarını tespit eden uçtan uca kalite kontrol çözümüdür. XML-to-YOLO koordinat dönüşümü, otomatik sınıf dengeleme ve yerel dağıtım için ONNX formatına aktarılmış yüksek performanslı çıkarım modelleri içermektedir. TechXtile Challenge – Level-Up kategorisinde finalist olmuştur.",
       "stack": ["Python", "YOLOv7", "YOLOv11", "ONNX", "Computer Vision", "Deep Learning"],
@@ -35,6 +37,7 @@
     },
     {
       "name": "Sağlıkla",
+      "aliases": ["Saglikla-App", "diyabet", "çölyak", "diabetes", "celiac"],
       "short_description": "Diyabet ve çölyak hastaları için yapay zeka destekli mobil sağlık asistanı.",
       "long_description": "Flutter, Firebase, Gemini AI ve OpenFoodFacts entegrasyonuyla geliştirilen kişiselleştirilmiş beslenme riski değerlendirmesi sunan mobil sağlık uygulamasıdır. Yapay zeka destekli karar servisi ile gerçek zamanlı içerik analizi, kalori ve karbonhidrat tahmini yapılmaktadır. Global temalı AppJam Hackathon'da 2.'lik ödülü kazanmıştır.",
       "stack": ["Flutter", "Firebase", "Gemini AI", "OpenFoodFacts", "Dart"],
@@ -43,7 +46,18 @@
       "achievement": "AppJam Hackathon 2.'lik"
     },
     {
+      "name": "BUĞRA.AI",
+      "aliases": ["dijital klon", "digital clone", "bu site", "bu portfolyo", "bu chatbot", "this site", "this website", "this portfolio", "this chatbot"],
+      "short_description": "Ziyaretçilerin portfolyomu okumak yerine benim dijital klonumla sohbet ettiği, RAG tabanlı yapay zekâ avatarlı kişisel portfolyo sitesi.",
+      "long_description": "Şu an benimle (dijital klonumla) konuştuğun bu portfolyo sitesi. React ve Vite ile geliştirilen arayüzde Three.js ile sesin FFT verisine tepki veren 3D bir küre, Tone.js ile sohbet durumuna göre değişen 4 katmanlı prosedürel müzik, Framer Motion animasyonları ve Zustand state yönetimi var. FastAPI backend'de knowledge.json'dan derlenen kayıtlar yerel sentence-transformers embedding'leriyle ChromaDB'de indeksleniyor; sorular anlamsal ve anahtar kelime aramasını birleştiren hibrit retrieval ile ilgili kayıtlara bağlanıyor ve Groq üzerindeki LLM ile birinci şahıs, kaynak kartlı yanıtlara dönüşüyor. Türkçe ve İngilizce yanıt veriyor; frontend Vercel'de, backend Hugging Face Spaces üzerinde Docker ile çalışıyor.",
+      "stack": ["React", "Vite", "JavaScript", "Three.js", "Tone.js", "Framer Motion", "Zustand", "Python", "FastAPI", "LangChain", "ChromaDB", "sentence-transformers", "Groq", "Docker", "Vercel", "Hugging Face Spaces"],
+      "tags": ["RAG", "LLM", "Portfolio", "Three.js", "FastAPI", "Digital Clone"],
+      "github": "https://github.com/sbugrayy/Portfolio",
+      "url": "https://bugrayildirim.vercel.app/"
+    },
+    {
       "name": "İKA Kontrol Sistemi",
+      "aliases": ["İKA", "IkaApp", "insansız kara aracı", "UGV", "TEKNOFEST"],
       "short_description": "TEKNOFEST için geliştirilen çoklu kamera entegrasyonu, gerçek zamanlı veri senkronizasyonu ve uzaktan motor kontrolü sistemi.",
       "long_description": "TEKNOFEST İKA yarışması için ATLAS Techworks bünyesinde geliştirilen savunma sanayi uygulamasıdır. PyQt6 tabanlı kontrol ve izleme sistemi, çoklu kamera entegrasyonu, Firebase ile gerçek zamanlı veri senkronizasyonu ve WebRTC video streaming içermektedir.",
       "stack": ["PyQt6", "Firebase", "WebRTC", "Python", "JavaScript"],
@@ -52,6 +66,7 @@
     },
     {
       "name": "Brain Tumor MRI Classification",
+      "aliases": ["Brain Tumor", "beyin tümör", "MRI"],
       "short_description": "MRI görüntülerinden beyin tümörü sınıflandırması için CNN ve EfficientNetB0 tabanlı derin öğrenme modeli.",
       "long_description": "Akbank Deep Learning Bootcamp projesi kapsamında geliştirilmiştir. Veri artırma, hiperparametre optimizasyonu ve EarlyStopping/ReduceLROnPlateau callback'leriyle eğitilen model %84 doğrulama doğruluğuna ulaşmıştır. GradCAM ile karar alma süreçleri görselleştirilerek model açıklanabilirliği sağlanmış; karışıklık matrisi ve sınıflandırma raporuyla detaylı performans analizi yapılmıştır.",
       "stack": ["Python", "TensorFlow", "Keras", "CNN", "EfficientNetB0", "GradCAM"],
@@ -61,6 +76,7 @@
     },
     {
       "name": "Roket Yer İstasyonu",
+      "aliases": ["roket", "rocket", "yer istasyonu", "ground station", "TEKNOFEST"],
       "short_description": "Yüksek irtifa roketi için 3D görselleştirme ve çoklu seri port iletişimi olan gerçek zamanlı telemetri yer istasyonu.",
       "long_description": "Misya Havacılık ve Uzay Teknolojileri bünyesinde geliştirilen PyQt5 tabanlı gerçek zamanlı telemetri sistemi. 3D roket görselleştirme, çoklu seri port iletişimi, GPS, IMU ve çevresel sensör verileri entegrasyonu içermektedir.",
       "stack": ["PyQt5", "Python", "OpenGL", "Arduino"],
@@ -69,6 +85,7 @@
     },
     {
       "name": "AdOptima",
+      "aliases": ["Google Ads", "bütçe optimizasyon", "budget optimization"],
       "short_description": "Google Ads bütçe optimizasyon ve yönetim aracı. Coğrafi kısıtlar altında otomatik bütçe dağılımı yapıyor.",
       "long_description": "Python, Pandas, Gradio ve OpenPyXL teknolojileri kullanılarak geliştirilen web tabanlı veri işleme aracıdır. Coğrafi harcama kısıtları altında optimizasyon mantığı içeren performans tabanlı dinamik bütçe dağıtım algoritması tasarlanmıştır. Manuel bütçe yönetimini saniyeler içinde otomatize ediyor.",
       "stack": ["Python", "Pandas", "Gradio", "OpenPyXL"],
@@ -77,6 +94,7 @@
     },
     {
       "name": "Quiz Creator AI",
+      "aliases": ["Quiz Creator", "quiz"],
       "short_description": "Verilen konudan yapay zeka ile çoktan seçmeli sorular üreten interaktif quiz uygulaması.",
       "long_description": "React tabanlı frontend ve Flask serverless backend kullanılarak geliştirilmiş, Google Gemini API entegrasyonuyla çalışan web uygulamasıdır. Kullanıcı tarafından belirlenen konu ve zorluk seviyesine göre 1-50 arası soru üretmektedir. Programlama sorularında kod örnekleri de sunulmaktadır. GSAP animasyonları ile modern bir kullanıcı arayüzüne sahip olup Vercel üzerinde deploy edilmiştir.",
       "stack": ["React", "Flask", "Python", "Gemini AI", "GSAP"],
@@ -86,6 +104,7 @@
     },
     {
       "name": "Safir",
+      "aliases": ["EgeKaf"],
       "short_description": "EgeKaf GameJam 2025'te 2.'lik kazanan 2D platform pixel art oyunu.",
       "long_description": "Unity ve C# ile geliştirilen 2D platform pixel art oyunudur. FL Studio ile özgün müzik de bestelendi. EgeKaf GameJam 2025'te 2.'lik elde edildi.",
       "stack": ["Unity", "C#", "FL Studio"],
@@ -96,6 +115,7 @@
     },
     {
       "name": "Time Machine",
+      "aliases": ["Zaman Makinesi", "GNG Jam", "GNGjam"],
       "short_description": "GNG Jam'de 48 saatte geliştirilen 3.'lük kazanan zaman yolculuğu macera oyunu.",
       "long_description": "Taş Devri'ne kazara ışınlanan Hikmet'in kendi çağına dönüş macerasını konu alan 2D oyundur. GNG Jam kapsamında 48 saatlik maratonda Unity ile geliştirilmiş ve takım olarak 3.'lük elde edilmiştir.",
       "stack": ["Unity", "C#"],
@@ -106,6 +126,7 @@
     },
     {
       "name": "Hızlı Gol",
+      "aliases": ["futbol oyunu", "football game", "internet-futbol-game"],
       "short_description": "İki kişilik web tabanlı klavye kontrollu futbol oyunu — tamamen tarayıcıda çalışıyor.",
       "long_description": "HTML, CSS ve JavaScript ile geliştirilmiş, iki oyuncunun aynı klavyeyle oynayabildiği web tabanlı futbol oyunudur.",
       "stack": ["HTML", "CSS", "JavaScript", "FL Studio"],
@@ -115,6 +136,7 @@
     },
     {
       "name": "Terlikçi",
+      "aliases": ["Teknokent GameJam"],
       "short_description": "Balıkesir Teknokent GameJam 2025'te geliştirilen 2D pixel art oyunu.",
       "long_description": "Balıkesir Teknokent GameJam 2025 kapsamında Unity ve C# ile geliştirilen 2D pixel art oyunudur. FL Studio ile özgün müzik bestelendi.",
       "stack": ["Unity", "C#", "FL Studio"],
@@ -123,6 +145,7 @@
     },
     {
       "name": "Farm Game",
+      "aliases": ["çiftlik oyunu", "hyper casual"],
       "short_description": "3D izometrik hyper casual oyun. Udemy kursu ile geliştirildi.",
       "long_description": "Unity ve C# ile geliştirilen 3D izometrik hyper casual çiftlik oyunudur. Udemy Android Hyper Casual Game Development kursu kapsamında üretilmiştir.",
       "stack": ["Unity", "C#", "FL Studio"],
@@ -131,6 +154,7 @@
     },
     {
       "name": "Appreciation",
+      "aliases": ["teşekkür sitesi"],
       "short_description": "Kariyer Pusulası zirvesi koordinasyon ekibindeki arkadaşlarıma teşekkür için hazırladığım web sitesi.",
       "long_description": "Kariyer Pusulası etkinliğinde koordinasyon ekibinde yer alan arkadaşlarımı onurlandırmak amacıyla sıfırdan tasarlanmış statik bir web sitesidir. HTML, CSS ve JavaScript ile geliştirilmiş olup etkinliğe özel marka görselleri kullanılmıştır.",
       "stack": ["HTML", "CSS", "JavaScript"],
@@ -140,6 +164,7 @@
     },
     {
       "name": "Portfolyo Web Sitesi",
+      "aliases": ["Musa Yücesan", "portfolio-musa"],
       "short_description": "Musa Yücesan için yapılan modern ve responsive portfolyo web sitesi.",
       "long_description": "React, JavaScript, HTML ve CSS kullanılarak geliştirilen modern ve responsive portfolyo web sitesidir.",
       "stack": ["React", "JavaScript", "HTML", "CSS"],
@@ -149,6 +174,7 @@
     },
     {
       "name": "Tobacco App",
+      "aliases": ["Tobacco", "tütün"],
       "short_description": "Küçük işletmeler için veritabanı yönetimi ve kayıt uygulaması.",
       "long_description": "PyQt5 ve SQL kullanılarak geliştirilen küçük işletmelere yönelik stok ve kayıt yönetimi masaüstü uygulamasıdır.",
       "stack": ["PyQt5", "SQL", "Python"],
@@ -157,6 +183,7 @@
     },
     {
       "name": "Notepad",
+      "aliases": ["metin düzenleyici", "text editor"],
       "short_description": "Notepad++ benzeri özelliklere sahip masaüstü metin düzenleyici uygulaması.",
       "long_description": "PyQt5 ve QtDesigner ile geliştirilmiş, Notepad++ benzeri arayüze sahip masaüstü metin düzenleyici uygulamasıdır.",
       "stack": ["PyQt5", "Python", "QtDesigner"],
@@ -165,6 +192,7 @@
     },
     {
       "name": "Hava Durumu",
+      "aliases": ["weather app", "OpenWeatherMap"],
       "short_description": "OpenWeatherMap API ile çalışan masaüstü hava durumu uygulaması. Hem C# hem Python versiyonu mevcut.",
       "long_description": "OpenWeatherMap API entegrasyonuyla çalışan masaüstü hava durumu uygulamasıdır. Hem PyQt5 (Python) hem de C# olmak üzere iki farklı versiyonu bulunmaktadır.",
       "stack": ["PyQt5", "C#", "API"],
@@ -177,42 +205,49 @@
     {
       "company": "Cats Bilişim (Cats Software Development)",
       "position": "Back-end Developer Stajyeri",
+      "aliases": ["Cats"],
       "date": "Haziran 2026 – Günümüz",
       "description": "Cats Bilişim bünyesinde Back-end Developer Stajyeri olarak Türkiye'den uzaktan çalışıyorum. Şirketin mevcut kurumsal CRM'inin SQL Server veritabanı üzerine, mobil istemciye hizmet veren bir ASP.NET Core Web API katmanı geliştirdim; EF Core ile database-first çalıştım ve mevcut ASP.NET Identity hesaplarının üzerine mobil oturum için JWT ürettim. Yazma uçlarına geçmeden önce tüm salt-okunur uçları Flutter'a bağlayıp gerçek veriyle doğrulayarak veri bozulma riskini kontrol altında tuttum. Mobil tarafta Flutter (flutter_bloc, go_router, dio) ile cari, ürün, teklif, sözleşme, proje, tahsilat, masraf, görev ve e-fatura akışlarını tek bir uygulamada topladım; teklif PDF üretimi, banka hesabı eşleştirmeli tahsilat takibi ve proje maliyet yönetimi modüllerini uçtan uca teslim ettim. Veri tutarlılığı kontrolleri sırasında hiçbir banka hesabına bağlı olmayan 10 binlerce TL'lik tahsilatı tespit edip düzelttim. Cats Bilişim, modern teknolojileri takip ederek ve modern donanım ile iletişim teknolojileriyle entegre çalışarak kamu ve özel sektör kurumlarına yönelik kurumsal yazılım çözümleri geliştiren, genç ve dinamik kadrosuyla çözüm ortaklığına dayalı hizmet sunan bir yazılım şirketidir."
     },
     {
       "company": "Microsoft",
       "position": "AI Engineer Stajyeri",
+      "aliases": ["AI Innovators"],
       "date": "Haziran 2026 – Temmuz 2026",
       "description": "Microsoft AI Innovators Staj Programı kapsamında, .NET 10 (ASP.NET Core Minimal API), Microsoft Foundry Local ve Semantic Kernel kullanarak KVKK'ya uygun, %100 cihaz üzerinde çalışan agentic bir RAG doküman zekâsı platformu geliştirdim (repo: foundry-local-rag-agent). Word, PDF ve Excel belgelerinde \"bu bilgi nerede geçiyor?\" sorusunu çözdüm; benzerlik eşiği ve @bahsetme sözdizimiyle alakasız belge sızıntısını azalttım. Bindirmeli parçalama, qwen3-embedding-0.6b ile embedding üretimi ve SQLite'ta kalıcı saklama içeren tamamen yerel bir veri alım hattı kurdum; cosine similarity tabanlı bilgi getirmeyi uyguladım ve phi-4-mini ile kaynak referanslı yanıtlar ürettim. Küçük modellerde native tool-calling güvenilmez olduğu için Semantic Kernel üzerinde JSON router tabanlı agentic yönlendirme tasarlayarak sorguları RAG, özetleme ve rapor üretimine dağıttım. QuestPDF, OpenXML ve ClosedXML ile indirilebilir Word/Excel/PDF raporları ürettim. SSE akışlı yanıtlarla ilk çıktı süresini 8 saniyeye indirdim; CPU/GPU/NPU donanım hızlandırmasıyla çalışan Türkçe web arayüzü, uçtan uca test süreci ve kapsamlı proje dokümantasyonu teslim ettim. Türkiye'den uzaktan çalıştım."
     },
     {
       "company": "HUAWEI Student Developers (HSD) Türkiye",
       "position": "Medium Komitesi Başkan Yardımcısı",
+      "aliases": ["Huawei", "Medium Komitesi"],
       "date": "Ocak 2026 – Günümüz",
       "description": "Huawei Türkiye Medium platformunun stratejik ve operasyonel yönetimine katkı sağlıyorum. HSD gönüllü üniversite öğrencilerinin yazdığı içerikler için editöryal iş akışını koordine ediyorum. Öğrenci yazarlara mentörlük yaparak teknik yazım ve analitik becerilerini geliştiriyorum. Yüksek kaliteli içerik standartlarını korumak için editöryal takvim yönetimi yapıyorum."
     },
     {
       "company": "HUAWEI Student Developers (HSD) Türkiye",
       "position": "Kampüs Elçisi — Balıkesir",
+      "aliases": ["Huawei", "Kampüs Elçisi", "Campus Ambassador", "HSD Balıkesir"],
       "date": "Eylül 2025 – Günümüz",
       "description": "Huawei ekosisteminde edindiğim sertifikalar: HCCDA-Cloud Native, HCCDA-AI, HCCDA-Tech Essentials, HCSD Campus Ambassador ve Huawei Cloud AI Bootcamp. Balıkesir Üniversitesi'nde HSD Balıkesir topluluğunu kurdum ve yönetiyorum. 30+ kişilik bir çekirdek takım kurarak 4 komite halinde yapılandırdım. Unides projesi olan Kariyer Pusulası Zirvesi'ni organize ettim. BAUNTECH Start ve Yazan Zeka programlarında üç yapay zeka takımına mentörlük yaparak yazılım geliştirme süreçlerini yönettim. AppJam'25 yarışmasında mobil uygulama geliştirerek 48 saatlik hackathonda takım olarak 2.'lik, GNG Jam'de Unity tabanlı oyun geliştirerek 48 saatlik game jam'de takım olarak 3.'lük elde ettim. Öğrencileri HCCDA ve Huawei Bootcamp gibi global sertifika programlarına yönlendirdim."
     },
     {
       "company": "TNC Group Şirketleri",
       "position": "IT Stajyer",
+      "aliases": ["TNC"],
       "date": "Ağustos 2025 – Eylül 2025",
       "description": "Bilgi Teknolojileri departmanında uygulamalı IT becerileri üzerine staj yaptım. Python, Excel, Photoshop ve AutoCAD eğitimlerini başarıyla tamamladım. Eğitim sonucu 4 IT projesi geliştirerek güçlü tasarım becerilerimi sergiledim."
     },
     {
       "company": "ATLAS Techworks",
       "position": "Yazılım Takım Üyesi",
+      "aliases": ["ATLAS"],
       "date": "Temmuz 2025 – Eylül 2025",
       "description": "TEKNOFEST İKA yarışması için rekabetçi bir takımda yazılım geliştirici olarak çalıştım. PyQt6 tabanlı kontrol ve izleme sistemi geliştirdim — çoklu kamera entegrasyonu ile. Firebase ile gerçek zamanlı veri senkronizasyonu ve WebRTC akışı uyguladım. Uzaktan motor kontrolü imkânı sağlayarak sistem işlevselliğini artırdım."
     },
     {
       "company": "Misya Havacılık ve Uzay Teknolojileri",
       "position": "Yazılım Takım Üyesi",
+      "aliases": ["Misya"],
       "date": "Kasım 2024 – Temmuz 2025",
       "description": "Yüksek irtifa roket takımında yazılım geliştirici olarak çalıştım. Yer istasyonu uygulaması ve aviyonik algoritma yazılımı geliştirdim. PyQt5 tabanlı gerçek zamanlı telemetri sistemi oluşturdum — 3D roket görselleştirme ve çoklu seri port iletişimi ile. GPS, IMU ve çevresel izleme için kapsamlı sensör verisi entegrasyonu yaptım."
     }
@@ -221,6 +256,7 @@
   "education": [
     {
       "school": "Balıkesir Üniversitesi",
+      "aliases": ["BAUN", "üniversite", "university", "GANO", "GPA"],
       "degree": "Lisans",
       "field": "Bilgisayar Mühendisliği",
       "period": "2023 – Haziran 2027 (beklenen mezuniyet)",
@@ -228,6 +264,7 @@
     },
     {
       "school": "Milli Teknoloji Akademisi",
+      "aliases": ["MTA", "Milli Teknoloji"],
       "degree": "Uzmanlık Eğitimi",
       "field": "Yapay Zeka",
       "period": "2026 – Devam Ediyor",

@@ -1,24 +1,25 @@
 """
 main.py — FastAPI AI Avatar Backend
-POST /chat endpoint: RAG pipeline ile cevap üretir.
+POST /chat endpoint: RAG pipeline ile cevap üretir (bkz. rag/pipeline.py).
 """
 
 import logging
 import sys
-from typing import Optional
+from typing import Literal, Optional
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 # Yalnızca hata logu — kullanıcı sorguları asla loglanmaz
 logging.basicConfig(level=logging.ERROR, stream=sys.stderr)
 logger = logging.getLogger(__name__)
 
 from config import (
-    GROQ_API_KEY, CHROMA_PERSIST_DIR, CHROMA_COLLECTION_NAME,
-    LOCAL_EMBEDDING_MODEL, CHAT_MODEL, TOP_K_RESULTS, MMR_FETCH_K,
-    MAX_HISTORY_TURNS, SYSTEM_PROMPT, ALLOWED_ORIGINS,
+    GROQ_API_KEY, CHROMA_PERSIST_DIR, CHROMA_COLLECTION_NAME, KNOWLEDGE_JSON_PATH,
+    LOCAL_EMBEDDING_MODEL, CHAT_MODEL, CHAT_MODEL_FALLBACKS, LLM_MODEL_OPTIONS,
+    LLM_TEMPERATURE, LLM_MAX_TOKENS, MAX_HISTORY_TURNS, MAX_SEARCH_RECORDS,
+    MAX_PINNED_RECORDS, DENSE_OOD_THRESHOLD, DENSE_MARGIN, SYSTEM_PROMPT, ALLOWED_ORIGINS,
 )
 
 # ── FastAPI ──────────────────────────────────────────────────────────
@@ -37,49 +38,55 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# ── LangChain + ChromaDB başlatma ────────────────────────────────────
+# ── RAG pipeline başlatma ────────────────────────────────────────────
 try:
-    from langchain_groq import ChatGroq
-    from langchain_chroma import Chroma
+    from rag.embeddings import SentenceTransformerEmbeddings
+    from rag.index import KnowledgeIndex
+    from rag.pipeline import ChatPipeline, GroqChain, PipelineSettings
 
-    # Embedding: local (sentence-transformers)
-    try:
-        from langchain_huggingface import HuggingFaceEmbeddings
-    except ImportError:
-        from langchain_community.embeddings import HuggingFaceEmbeddings
-    _embeddings = HuggingFaceEmbeddings(
-        model_name=LOCAL_EMBEDDING_MODEL,
-        model_kwargs={"device": "cpu"},
-        encode_kwargs={"normalize_embeddings": True},
-    )
-
-    _vectorstore = Chroma(
+    _index = KnowledgeIndex(
+        kb_path=KNOWLEDGE_JSON_PATH,
+        persist_dir=CHROMA_PERSIST_DIR,
         collection_name=CHROMA_COLLECTION_NAME,
-        embedding_function=_embeddings,
-        persist_directory=CHROMA_PERSIST_DIR,
+        embeddings=SentenceTransformerEmbeddings(LOCAL_EMBEDDING_MODEL),
+        embedding_model_name=LOCAL_EMBEDDING_MODEL,
     )
+    _index.snapshot()  # İndeks eski/eksikse açılışta yeniden kurulur
 
-    _llm = ChatGroq(
-        model=CHAT_MODEL,
-        groq_api_key=GROQ_API_KEY,
-        temperature=0.5,
-        max_tokens=600,
+    _pipeline = ChatPipeline(
+        index=_index,
+        settings=PipelineSettings(
+            system_prompt=SYSTEM_PROMPT,
+            max_history_turns=MAX_HISTORY_TURNS,
+            max_search_records=MAX_SEARCH_RECORDS,
+            max_pinned_records=MAX_PINNED_RECORDS,
+            dense_ood_threshold=DENSE_OOD_THRESHOLD,
+            dense_margin=DENSE_MARGIN,
+        ),
+        llm_chain=GroqChain(
+            api_key=GROQ_API_KEY,
+            models=[CHAT_MODEL, *CHAT_MODEL_FALLBACKS],
+            temperature=LLM_TEMPERATURE,
+            max_tokens=LLM_MAX_TOKENS,
+            model_options=LLM_MODEL_OPTIONS,
+        ),
     )
 except Exception as _init_err:
-    logger.error("Başlatma hatası: %s", _init_err)
-    _vectorstore = None
-    _llm = None
+    logger.error("Başlatma hatası: %s", _init_err, exc_info=True)
+    _index = None
+    _pipeline = None
 
 
 # ── Pydantic şemaları ────────────────────────────────────────────────
 class HistoryMessage(BaseModel):
-    role: str   # 'user' | 'assistant'
-    content: str
+    role: Literal["user", "assistant"]   # 'system' rolüyle prompt enjeksiyonu engellenir
+    content: str                         # uzun içerik pipeline'da kırpılır
 
 
 class ChatRequest(BaseModel):
-    query: str
-    history: list[HistoryMessage] = []
+    query: str                           # 1000 karakterden sonrası pipeline'da kırpılır
+    history: list[HistoryMessage] = Field(default=[], max_length=20)
+    lang: Optional[Literal["tr", "en"]] = None   # arayüz dili (soru dili belirsizse kullanılır)
 
 
 class SourceInfo(BaseModel):
@@ -95,91 +102,50 @@ class ChatResponse(BaseModel):
     stem_hint: str  # 'bass' | 'arp' | 'pad'
 
 
-# ── Yardımcı fonksiyonlar ────────────────────────────────────────────
-def _parse_tags(raw) -> list[str]:
-    if isinstance(raw, list):
-        return raw
-    if isinstance(raw, str) and raw:
-        return [t.strip() for t in raw.split(",") if t.strip()]
-    return []
-
-
-def _determine_stem_hint(sources: list[SourceInfo]) -> str:
-    """Kaynak listesine göre ses stem ipucu belirler."""
-    if not sources:
-        return "pad"
-    if any(s.project_name for s in sources):
-        return "bass"
-    return "arp"
-
-
 # ── Endpoint'ler ─────────────────────────────────────────────────────
 @app.get("/health")
-async def health():
+def health():
     """Backend sağlık kontrolü."""
-    return {"status": "ok", "vectorstore": _vectorstore is not None}
+    if _index is None:
+        return {"status": "ok", "vectorstore": False}
+    snap = _index.snapshot()
+    return {
+        "status": "ok",
+        "vectorstore": True,
+        "documents": len(snap.docs),
+        "kb_fingerprint": snap.fingerprint,
+        "embedding_model": LOCAL_EMBEDDING_MODEL,
+        "chat_models": [CHAT_MODEL, *CHAT_MODEL_FALLBACKS],
+    }
 
 
 @app.post("/chat", response_model=ChatResponse)
-async def chat(req: ChatRequest):
-    """Ana RAG chat endpoint'i. Kullanıcı sorgularını loglamaz."""
+def chat(req: ChatRequest):
+    """Ana RAG chat endpoint'i. Kullanıcı sorgularını loglamaz.
+
+    Senkron tanımlı: FastAPI bunu thread havuzunda çalıştırır, böylece bloklayan
+    embedding/LLM çağrıları diğer istekleri dondurmaz.
+    """
     if not req.query or not req.query.strip():
         raise HTTPException(status_code=400, detail="Sorgu boş olamaz")
 
-    if _vectorstore is None or _llm is None:
+    if _pipeline is None:
         raise HTTPException(
             status_code=503,
-            detail="Servis hazır değil. build_knowledge_base.py çalıştırıldı mı?",
+            detail="Servis hazır değil. Backend loglarını kontrol edin.",
         )
 
     try:
-        query = req.query.strip()
-
-        # MMR: çeşitli belgeler getir (aynı kaynaktan 3 chunk gelmesini engeller)
-        docs = _vectorstore.max_marginal_relevance_search(
-            query, k=TOP_K_RESULTS, fetch_k=MMR_FETCH_K
+        result = _pipeline.answer(
+            req.query,
+            [h.model_dump() for h in req.history],
+            ui_lang=req.lang,
         )
-
-        # RAG bağlamı oluştur
-        context = "\n\n".join(doc.page_content for doc in docs)
-
-        # Mesaj listesi: system → geçmiş → şimdiki sorgu
-        messages = [
-            {"role": "system", "content": SYSTEM_PROMPT.format(context=context)},
-        ]
-        for h in req.history[-(MAX_HISTORY_TURNS * 2):]:
-            messages.append({"role": h.role, "content": h.content})
-        messages.append({"role": "user", "content": query})
-
-        response = _llm.invoke(messages)
-        answer: str = response.content
-
-        # Kaynak metadata'sı (duplicate'siz)
-        sources: list[SourceInfo] = []
-        seen: set[str] = set()
-        for doc in docs:
-            meta = doc.metadata
-            project_name = meta.get("project_name") or None
-            source_type = meta.get("source", "json")
-            github = meta.get("github") or None
-            tags = _parse_tags(meta.get("tags", ""))
-
-            key = f"{project_name}|{source_type}"
-            if key not in seen:
-                seen.add(key)
-                sources.append(SourceInfo(
-                    project_name=project_name,
-                    source_type=source_type,
-                    github=github,
-                    tags=tags,
-                ))
-
         return ChatResponse(
-            answer=answer,
-            sources=sources,
-            stem_hint=_determine_stem_hint(sources),
+            answer=result["answer"],
+            sources=[SourceInfo(**s) for s in result["sources"]],
+            stem_hint=result["stem_hint"],
         )
-
     except Exception as exc:
-        logger.error("Chat endpoint hatası: %s", exc, exc_info=True)
+        logger.error("Chat endpoint hatası: %s", type(exc).__name__, exc_info=True)
         raise HTTPException(status_code=500, detail="Bir hata oluştu, lütfen tekrar deneyin")

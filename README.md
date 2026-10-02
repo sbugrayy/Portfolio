@@ -39,7 +39,13 @@ A futuristic, RAG-powered AI avatar portfolio. Instead of scrolling through a st
 ```
 
 **RAG Pipeline:**
-`knowledge.json` → sentence-transformers embeddings → ChromaDB → MMR retrieval → Groq (llama-3.3-70b) → streamed answer
+`knowledge.json` → record-level documents + always-on profile digest → entity / intent pinning + hybrid retrieval (multilingual embeddings in ChromaDB + BM25, fused with RRF) → Groq (qwen3.8-27b, with gpt-oss fallbacks) → grounded first-person answer + source cards
+
+- **Never stale:** the index stores a fingerprint of the compiled documents and the embedding model; when `knowledge.json` changes, the backend rebuilds it on the next request.
+- **No orphan chunks:** every project / role / degree is one self-contained document, so details are never separated from the record they belong to.
+- **Complete list answers:** a compact profile digest (all projects, roles, education, contact) is part of every prompt, so "what projects have you built?" never depends on top-k luck.
+- **Follow-ups:** "and which models did you use there?" carries the previous turn's project or company into retrieval.
+- **Honest unknowns:** a technology → usage map and an off-topic gate keep the clone from inventing projects or experience.
 
 ---
 
@@ -53,8 +59,8 @@ A futuristic, RAG-powered AI avatar portfolio. Instead of scrolling through a st
 | Audio | Tone.js (procedural 4-stem music) |
 | State | Zustand |
 | Backend | Python, FastAPI, Uvicorn |
-| AI / RAG | LangChain, ChromaDB, Groq API (llama-3.3-70b-versatile) |
-| Embeddings | sentence-transformers (paraphrase-multilingual-MiniLM-L12-v2) |
+| AI / RAG | LangChain, ChromaDB + BM25 hybrid retrieval, Groq API (qwen3.8-27b → gpt-oss fallbacks) |
+| Embeddings | sentence-transformers (multilingual, configurable via `LOCAL_EMBEDDING_MODEL`) |
 | Deployment | Vercel (frontend), Hugging Face Spaces Docker (backend) |
 
 ---
@@ -123,14 +129,14 @@ POST /chat    →  { "answer": string, "sources": [...], "stem_hint": string }
 
 ## Knowledge Base
 
-Edit `backend/data/knowledge.json` and rebuild:
+Edit `backend/data/knowledge.json` — the running backend picks up the change and rebuilds the index automatically. Optional `aliases` on projects, roles and schools let visitors refer to them by nickname ("textile defect project" → SFDDS).
 
 ```bash
 cd backend
-python build_knowledge_base.py
+python build_knowledge_base.py --show   # inspect the compiled documents and profile digest
+python eval/run_eval.py                 # retrieval regression check (offline, free)
+python eval/run_eval.py --e2e           # + real LLM answers checked against rules (uses Groq quota)
 ```
-
-The script indexes: biography, skills, projects, experience, education, and certifications as separate ChromaDB documents for precise MMR retrieval.
 
 ---
 

@@ -19,6 +19,9 @@ build/
 # ChromaDB (git'e ekleme — büyük ve runtime'da üretiliyor)
 backend/data/chroma_db/
 
+# Değerlendirme çıktısı (eval/run_eval.py her çalıştırmada yeniden yazar)
+backend/eval/last_run.jsonl
+
 # Node.js
 node_modules/
 frontend/dist/
